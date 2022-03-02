@@ -1,7 +1,7 @@
 import { QueryFunctionContext } from 'react-query';
 import { api, ENDPOINTS } from './api';
 
-export interface Show {
+export interface ShowType {
   id: number;
   url: string;
   name: string;
@@ -72,7 +72,7 @@ export const getPaginatedShows = async (
   context: QueryFunctionContext<string, any>,
 ) => {
   try {
-    const { data } = await api.get<Array<Show>>(ENDPOINTS.SHOWS, {
+    const { data } = await api.get<Array<ShowType>>(ENDPOINTS.SHOWS, {
       params: {
         page: context.pageParam,
       },

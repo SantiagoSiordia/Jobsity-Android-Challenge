@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useInfiniteShows } from '../../services';
+import { Show } from './Show';
 
 export const SeriesList: FC = () => {
   const { data: shows, isLoading, isError } = useInfiniteShows();
@@ -26,16 +27,29 @@ export const SeriesList: FC = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView>
       <Text>Loaded pages: {shows.pages.length}</Text>
-    </View>
+      {shows.pages.map((showsGroup, showsGroupIndex) => {
+        return (
+          <View
+            key={'shows-group-' + showsGroupIndex}
+            style={styles.showsContainer}>
+            {showsGroup.map((show, showIndex) => {
+              return <Show key={'show-' + showIndex} show={show} />;
+            })}
+          </View>
+        );
+      })}
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
+  showsContainer: {
     flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    padding: 16,
+    justifyContent: 'space-between',
   },
 });

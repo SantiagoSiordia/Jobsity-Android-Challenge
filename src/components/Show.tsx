@@ -6,11 +6,19 @@ export interface ShowProps {
   show: ShowType;
 }
 
+const defaultNoImageURI =
+  'https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg';
+
 export const Show: FC<ShowProps> = ({ show }) => {
   return (
     <View style={styles.showContainer}>
       <Text style={styles.showName}>{show.name}</Text>
-      <Image source={{ uri: show.image.medium }} style={styles.image} />
+      <Image
+        source={{
+          uri: show.image !== null ? show.image.medium : defaultNoImageURI,
+        }}
+        style={styles.image}
+      />
     </View>
   );
 };

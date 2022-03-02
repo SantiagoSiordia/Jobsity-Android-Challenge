@@ -21,7 +21,7 @@ export interface ShowType {
   webChannel: null;
   dvdCountry: null;
   externals: Externals;
-  image: Image;
+  image: Image | null;
   summary: string;
   updated: number;
   links: Links;

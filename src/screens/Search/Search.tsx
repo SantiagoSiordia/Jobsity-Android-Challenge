@@ -1,13 +1,51 @@
 import React, { FC } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Show } from '../../components';
+import { useShowSearchResult } from '../../services/queries/useShowSearchResult';
+import { useAppSelector } from '../../services/redux';
 
 export const Search: FC = () => {
+  const searchQuery = useAppSelector(state => state.search.query);
+  const {
+    data: queriedShows,
+    isLoading,
+    isError,
+  } = useShowSearchResult(searchQuery);
+
+  if (isLoading) {
+    return (
+      <View>
+        <Text>Is loading</Text>
+      </View>
+    );
+  }
+
+  if (isError) {
+    return (
+      <View>
+        <Text>Is error</Text>
+      </View>
+    );
+  }
+
+  if (queriedShows === undefined || queriedShows === null) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.instructions}>
+          Search a show by name on the header input!
+        </Text>
+      </View>
+    );
+  }
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.instructions}>
-        Search a show by name on the header input!
-      </Text>
-    </View>
+    <ScrollView>
+      <View style={styles.showsContainer}>
+        {queriedShows.map(({ show }, showIndex) => (
+          <Show key={'show-' + showIndex} show={show} />
+        ))}
+      </View>
+    </ScrollView>
   );
 };
 
@@ -17,5 +55,12 @@ const styles = StyleSheet.create({
   },
   instructions: {
     textAlign: 'center',
+  },
+  showsContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    padding: 16,
+    justifyContent: 'space-between',
   },
 });

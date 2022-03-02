@@ -1,14 +1,18 @@
 import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 import React, { FC, useState } from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Button } from '../../components';
 import { useNavigation } from '@react-navigation/native';
-import { getShowsByName } from '../../services/api/getShowsByName';
+import { useDispatch } from 'react-redux';
+import { setQuery } from '../../services/redux/search';
+import { useAppSelector } from '../../services/redux';
 
 export const SearchHeader: FC<NativeStackHeaderProps> = () => {
   const [showToSearch, setShowToSearch] = useState<string>('');
   const { goBack } = useNavigation();
+  const dispatch = useDispatch();
+  const searchQuery = useAppSelector(state => state.search.query);
 
   const handleClear = () => {
     setShowToSearch('');
@@ -16,28 +20,33 @@ export const SearchHeader: FC<NativeStackHeaderProps> = () => {
   };
 
   const handleSearch = () => {
-    getShowsByName('rick');
+    dispatch(setQuery(showToSearch));
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.inputContainer}>
-        <Icon name="input" color="white" />
-        <TextInput
-          value={showToSearch}
-          autoFocus
-          onChangeText={setShowToSearch}
-          style={styles.textInput}
-          placeholder="Search shows by name"
-          placeholderTextColor="white"
-          selectionColor="black"
-        />
-      </View>
-      {showToSearch !== '' ? (
-        <Button title="Search" onPress={handleSearch} />
-      ) : null}
+    <View>
+      <View style={styles.container}>
+        <View style={styles.inputContainer}>
+          <Icon name="input" color="white" />
+          <TextInput
+            value={showToSearch}
+            autoFocus
+            onChangeText={setShowToSearch}
+            style={styles.textInput}
+            placeholder="Search shows by name"
+            placeholderTextColor="white"
+            selectionColor="black"
+          />
+        </View>
+        {showToSearch !== '' ? (
+          <Button title="Search" onPress={handleSearch} />
+        ) : null}
 
-      <Icon name="clear" size={20} color="white" onPress={handleClear} />
+        <Icon name="clear" size={30} color="white" onPress={handleClear} />
+      </View>
+      <Text style={styles.searchingFor}>
+        Searching for <Text style={styles.searchQuery}>"{searchQuery}"</Text>
+      </Text>
     </View>
   );
 };
@@ -45,7 +54,6 @@ export const SearchHeader: FC<NativeStackHeaderProps> = () => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 50,
     backgroundColor: 'black',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -59,7 +67,7 @@ const styles = StyleSheet.create({
   textInput: {
     color: 'white',
     marginHorizontal: 16,
-    minWidth: 130,
+    width: 130,
   },
   inputContainer: {
     backgroundColor: 'grey',
@@ -67,5 +75,15 @@ const styles = StyleSheet.create({
     padding: 8,
     height: 30,
     flexDirection: 'row',
+  },
+  searchingFor: {
+    color: 'white',
+    fontSize: 16,
+    textAlign: 'center',
+    paddingBottom: 8,
+    backgroundColor: 'black',
+  },
+  searchQuery: {
+    fontWeight: 'bold',
   },
 });

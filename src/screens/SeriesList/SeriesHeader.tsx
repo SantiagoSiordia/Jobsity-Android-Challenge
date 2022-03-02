@@ -19,7 +19,7 @@ export const SeriesHeader: FC<NativeStackHeaderProps> = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Loaded show pages: {shows?.pages.length}</Text>
-      <Icon name="search" size={20} color="white" onPress={handleSearch} />
+      <Icon name="search" size={30} color="white" onPress={handleSearch} />
     </View>
   );
 };
@@ -27,7 +27,6 @@ export const SeriesHeader: FC<NativeStackHeaderProps> = () => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 50,
     backgroundColor: 'black',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -37,6 +36,7 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     fontWeight: 'bold',
+    lineHeight: 30,
   },
   textInput: {
     color: 'white',

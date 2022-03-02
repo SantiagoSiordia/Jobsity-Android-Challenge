@@ -1,10 +1,28 @@
 import React, { FC } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import {
+  NativeScrollEvent,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { useInfiniteShows } from '../../services';
 import { Show } from './Show';
 
+const isCloseToBottom = ({
+  layoutMeasurement,
+  contentOffset,
+  contentSize,
+}: NativeScrollEvent) => {
+  const paddingToBottom = 20;
+  return (
+    layoutMeasurement.height + contentOffset.y >=
+    contentSize.height - paddingToBottom
+  );
+};
+
 export const SeriesList: FC = () => {
-  const { data: shows, isLoading, isError } = useInfiniteShows();
+  const { data: shows, isLoading, isError, fetchNextPage } = useInfiniteShows();
 
   if (isLoading) {
     return (
@@ -27,8 +45,12 @@ export const SeriesList: FC = () => {
   }
 
   return (
-    <ScrollView>
-      <Text>Loaded pages: {shows.pages.length}</Text>
+    <ScrollView
+      onScroll={({ nativeEvent }) => {
+        if (isCloseToBottom(nativeEvent)) {
+          fetchNextPage();
+        }
+      }}>
       {shows.pages.map((showsGroup, showsGroupIndex) => {
         return (
           <View

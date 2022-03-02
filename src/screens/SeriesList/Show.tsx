@@ -17,7 +17,7 @@ export const Show: FC<ShowProps> = ({ show }) => {
 
 const styles = StyleSheet.create({
   image: {
-    width: 120,
+    width: 110,
     aspectRatio: 0.7,
     borderRadius: 8,
   },
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   showName: {
-    width: 120,
+    width: 110,
     fontSize: 14,
     fontWeight: 'bold',
     color: 'black',

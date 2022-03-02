@@ -50,7 +50,8 @@ export const SeriesList: FC = () => {
         if (isCloseToBottom(nativeEvent)) {
           fetchNextPage();
         }
-      }}>
+      }}
+      scrollEventThrottle={400}>
       {shows.pages.map((showsGroup, showsGroupIndex) => {
         return (
           <View

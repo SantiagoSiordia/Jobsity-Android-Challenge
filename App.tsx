@@ -1,10 +1,15 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { SeriesList } from './src/screens';
-import { SeriesHeader } from './src/screens/SeriesList/SeriesHeader';
+import {
+  SearchHeader,
+  Search,
+  SCREENS,
+  SeriesHeader,
+  SeriesList,
+} from './src/screens';
 
 const Stack = createNativeStackNavigator();
 const queryClient = new QueryClient();
@@ -15,16 +20,21 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
         <NavigationContainer>
           <Stack.Navigator
-            screenOptions={
-              {
-                // headerShown: false,
-              }
-            }>
+            screenOptions={{
+              animation: 'fade',
+            }}>
             <Stack.Screen
-              name="Series"
+              name={SCREENS.SERIES_LIST}
               component={SeriesList}
               options={{
                 header: headerProps => <SeriesHeader {...headerProps} />,
+              }}
+            />
+            <Stack.Screen
+              name={SCREENS.SEARCH_SHOWS}
+              component={Search}
+              options={{
+                header: headerProps => <SearchHeader {...headerProps} />,
               }}
             />
           </Stack.Navigator>

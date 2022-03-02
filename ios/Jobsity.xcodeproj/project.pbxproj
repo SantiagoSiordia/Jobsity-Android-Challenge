@@ -37,6 +37,21 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Jobsity/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Jobsity/main.m; sourceTree = "<group>"; };
 		1D0AE47A65C8663E3B452821 /* Pods-Jobsity-JobsityTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jobsity-JobsityTests.release.xcconfig"; path = "Target Support Files/Pods-Jobsity-JobsityTests/Pods-Jobsity-JobsityTests.release.xcconfig"; sourceTree = "<group>"; };
+		2F0034B427CFFD59008E37BF /* EvilIcons.js.flow */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = EvilIcons.js.flow; path = "../node_modules/react-native-vector-icons/EvilIcons.js.flow"; sourceTree = "<group>"; };
+		2F0034B527CFFD59008E37BF /* FontAwesome5.js.flow */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FontAwesome5.js.flow; path = "../node_modules/react-native-vector-icons/FontAwesome5.js.flow"; sourceTree = "<group>"; };
+		2F0034B627CFFD59008E37BF /* Feather.js.flow */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Feather.js.flow; path = "../node_modules/react-native-vector-icons/Feather.js.flow"; sourceTree = "<group>"; };
+		2F0034B727CFFD59008E37BF /* Fontisto.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Fontisto.js; path = "../node_modules/react-native-vector-icons/Fontisto.js"; sourceTree = "<group>"; };
+		2F0034B827CFFD59008E37BF /* Fontisto.js.flow */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Fontisto.js.flow; path = "../node_modules/react-native-vector-icons/Fontisto.js.flow"; sourceTree = "<group>"; };
+		2F0034B927CFFD59008E37BF /* FontAwesome5Pro.js.flow */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FontAwesome5Pro.js.flow; path = "../node_modules/react-native-vector-icons/FontAwesome5Pro.js.flow"; sourceTree = "<group>"; };
+		2F0034BA27CFFD59008E37BF /* FontAwesome5.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = FontAwesome5.js; path = "../node_modules/react-native-vector-icons/FontAwesome5.js"; sourceTree = "<group>"; };
+		2F0034BB27CFFD59008E37BF /* Entypo.js.flow */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Entypo.js.flow; path = "../node_modules/react-native-vector-icons/Entypo.js.flow"; sourceTree = "<group>"; };
+		2F0034BC27CFFD59008E37BF /* Feather.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Feather.js; path = "../node_modules/react-native-vector-icons/Feather.js"; sourceTree = "<group>"; };
+		2F0034BD27CFFD59008E37BF /* FONTAWESOME5.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = FONTAWESOME5.md; path = "../node_modules/react-native-vector-icons/FONTAWESOME5.md"; sourceTree = "<group>"; };
+		2F0034BE27CFFD59008E37BF /* EvilIcons.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = EvilIcons.js; path = "../node_modules/react-native-vector-icons/EvilIcons.js"; sourceTree = "<group>"; };
+		2F0034BF27CFFD59008E37BF /* FontAwesome.js.flow */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FontAwesome.js.flow; path = "../node_modules/react-native-vector-icons/FontAwesome.js.flow"; sourceTree = "<group>"; };
+		2F0034C027CFFD59008E37BF /* FontAwesome.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = FontAwesome.js; path = "../node_modules/react-native-vector-icons/FontAwesome.js"; sourceTree = "<group>"; };
+		2F0034C127CFFD59008E37BF /* FontAwesome5Pro.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = FontAwesome5Pro.js; path = "../node_modules/react-native-vector-icons/FontAwesome5Pro.js"; sourceTree = "<group>"; };
+		2F0034C227CFFD59008E37BF /* Entypo.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Entypo.js; path = "../node_modules/react-native-vector-icons/Entypo.js"; sourceTree = "<group>"; };
 		6423831EA8574132BED9D8CC /* libPods-Jobsity.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Jobsity.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C97AB639B58BBB4B15BBE30 /* Pods-Jobsity-JobsityTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jobsity-JobsityTests.debug.xcconfig"; path = "Target Support Files/Pods-Jobsity-JobsityTests/Pods-Jobsity-JobsityTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Jobsity/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -86,6 +101,7 @@
 		13B07FAE1A68108700A75B9A /* Jobsity */ = {
 			isa = PBXGroup;
 			children = (
+				2F0034B327CFFD1B008E37BF /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -104,6 +120,28 @@
 				ABFE59519B596E51CEFDCCC0 /* libPods-Jobsity-JobsityTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2F0034B327CFFD1B008E37BF /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				2F0034C227CFFD59008E37BF /* Entypo.js */,
+				2F0034BB27CFFD59008E37BF /* Entypo.js.flow */,
+				2F0034BE27CFFD59008E37BF /* EvilIcons.js */,
+				2F0034B427CFFD59008E37BF /* EvilIcons.js.flow */,
+				2F0034BC27CFFD59008E37BF /* Feather.js */,
+				2F0034B627CFFD59008E37BF /* Feather.js.flow */,
+				2F0034C027CFFD59008E37BF /* FontAwesome.js */,
+				2F0034BF27CFFD59008E37BF /* FontAwesome.js.flow */,
+				2F0034BA27CFFD59008E37BF /* FontAwesome5.js */,
+				2F0034B527CFFD59008E37BF /* FontAwesome5.js.flow */,
+				2F0034BD27CFFD59008E37BF /* FONTAWESOME5.md */,
+				2F0034C127CFFD59008E37BF /* FontAwesome5Pro.js */,
+				2F0034B927CFFD59008E37BF /* FontAwesome5Pro.js.flow */,
+				2F0034B727CFFD59008E37BF /* Fontisto.js */,
+				2F0034B827CFFD59008E37BF /* Fontisto.js.flow */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -145,7 +183,6 @@
 				6C97AB639B58BBB4B15BBE30 /* Pods-Jobsity-JobsityTests.debug.xcconfig */,
 				1D0AE47A65C8663E3B452821 /* Pods-Jobsity-JobsityTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

@@ -4,6 +4,7 @@ import { StyleSheet, TextInput, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Button } from '../../components';
 import { useNavigation } from '@react-navigation/native';
+import { getShowsByName } from '../../services/api/getShowsByName';
 
 export const SearchHeader: FC<NativeStackHeaderProps> = () => {
   const [showToSearch, setShowToSearch] = useState<string>('');
@@ -12,6 +13,10 @@ export const SearchHeader: FC<NativeStackHeaderProps> = () => {
   const handleClear = () => {
     setShowToSearch('');
     goBack();
+  };
+
+  const handleSearch = () => {
+    getShowsByName('rick');
   };
 
   return (
@@ -29,7 +34,7 @@ export const SearchHeader: FC<NativeStackHeaderProps> = () => {
         />
       </View>
       {showToSearch !== '' ? (
-        <Button title="Search" onPress={() => {}} />
+        <Button title="Search" onPress={handleSearch} />
       ) : null}
 
       <Icon name="clear" size={20} color="white" onPress={handleClear} />

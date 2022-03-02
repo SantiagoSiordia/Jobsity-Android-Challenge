@@ -4,7 +4,9 @@ import { StyleSheet, Text, View } from 'react-native';
 export const Search: FC = () => {
   return (
     <View style={styles.container}>
-      <Text>Search</Text>
+      <Text style={styles.instructions}>
+        Search a show by name on the header input!
+      </Text>
     </View>
   );
 };
@@ -12,5 +14,8 @@ export const Search: FC = () => {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
+  },
+  instructions: {
+    textAlign: 'center',
   },
 });

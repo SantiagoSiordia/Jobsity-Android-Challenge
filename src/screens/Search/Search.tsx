@@ -1,10 +1,16 @@
 import React, { FC } from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 export const Search: FC = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Search</Text>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 16,
+  },
+});

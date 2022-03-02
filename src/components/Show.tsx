@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { ShowType } from '../services';
 
 export interface ShowProps {
@@ -10,8 +10,12 @@ const defaultNoImageURI =
   'https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg';
 
 export const Show: FC<ShowProps> = ({ show }) => {
+  const handleOnShowPress = () => {
+    console.log(show.id);
+  };
+
   return (
-    <View style={styles.showContainer}>
+    <Pressable style={styles.showContainer} onPress={handleOnShowPress}>
       <Text style={styles.showName}>{show.name}</Text>
       <Image
         source={{
@@ -19,7 +23,7 @@ export const Show: FC<ShowProps> = ({ show }) => {
         }}
         style={styles.image}
       />
-    </View>
+    </Pressable>
   );
 };
 

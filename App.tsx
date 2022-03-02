@@ -9,6 +9,7 @@ import {
   SCREENS,
   SeriesHeader,
   SeriesList,
+  ShowDetails,
 } from './src/screens';
 
 const Stack = createNativeStackNavigator();
@@ -38,6 +39,13 @@ const App = () => {
                 component={Search}
                 options={{
                   header: headerProps => <SearchHeader {...headerProps} />,
+                }}
+              />
+              <Stack.Screen
+                name={SCREENS.SHOW_DETAILS}
+                component={ShowDetails}
+                options={{
+                  headerShown: false,
                 }}
               />
             </Stack.Navigator>

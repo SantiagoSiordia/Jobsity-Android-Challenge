@@ -13,33 +13,37 @@ import {
 
 const Stack = createNativeStackNavigator();
 const queryClient = new QueryClient();
+import { Provider } from 'react-redux';
+import { store } from './src/services/redux';
 
 const App = () => {
   return (
     <SafeAreaView style={styles.SafeAreaView}>
-      <QueryClientProvider client={queryClient}>
-        <NavigationContainer>
-          <Stack.Navigator
-            screenOptions={{
-              animation: 'fade',
-            }}>
-            <Stack.Screen
-              name={SCREENS.SERIES_LIST}
-              component={SeriesList}
-              options={{
-                header: headerProps => <SeriesHeader {...headerProps} />,
-              }}
-            />
-            <Stack.Screen
-              name={SCREENS.SEARCH_SHOWS}
-              component={Search}
-              options={{
-                header: headerProps => <SearchHeader {...headerProps} />,
-              }}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </QueryClientProvider>
+      <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
+          <NavigationContainer>
+            <Stack.Navigator
+              screenOptions={{
+                animation: 'fade',
+              }}>
+              <Stack.Screen
+                name={SCREENS.SERIES_LIST}
+                component={SeriesList}
+                options={{
+                  header: headerProps => <SeriesHeader {...headerProps} />,
+                }}
+              />
+              <Stack.Screen
+                name={SCREENS.SEARCH_SHOWS}
+                component={Search}
+                options={{
+                  header: headerProps => <SearchHeader {...headerProps} />,
+                }}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </QueryClientProvider>
+      </Provider>
     </SafeAreaView>
   );
 };

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import { ShowType } from '../../services';
+import { ShowType } from '../services';
 
 export interface ShowProps {
   show: ShowType;

@@ -5,11 +5,12 @@ import { useInfiniteShows } from '../../services';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useNavigation } from '@react-navigation/native';
 import { SCREENS } from '../screens';
+import type { StackNavigationProp } from '@react-navigation/stack';
 
 export const SeriesHeader: FC<NativeStackHeaderProps> = () => {
   const { data: shows } = useInfiniteShows();
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<any>>();
 
   const handleSearch = () => {
     navigation.push(SCREENS.SEARCH_SHOWS);

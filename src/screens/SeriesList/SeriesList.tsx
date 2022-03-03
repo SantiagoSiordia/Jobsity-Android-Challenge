@@ -1,13 +1,14 @@
+import { Loading, Show } from '@components';
+import { useInfiniteShows } from '@services';
 import React, { FC } from 'react';
 import {
   NativeScrollEvent,
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
-import { useInfiniteShows } from '@services';
-import { Show, Loading } from '@components';
 
 const isCloseToBottom = ({
   layoutMeasurement,
@@ -40,6 +41,10 @@ export const SeriesList: FC = () => {
     return null;
   }
 
+  const handleOnCreatePIN = () => {
+    console.log('Create PIN');
+  };
+
   return (
     <ScrollView
       onScroll={({ nativeEvent }) => {
@@ -47,7 +52,14 @@ export const SeriesList: FC = () => {
           fetchNextPage();
         }
       }}
+      contentContainerStyle={styles.container}
       scrollEventThrottle={400}>
+      <View style={{ flexDirection: 'row' }}>
+        <Pressable style={styles.PIN} onPress={handleOnCreatePIN}>
+          <Text>Create PIN</Text>
+        </Pressable>
+        <View style={{ flex: 1 }} />
+      </View>
       {shows.pages.map((showsGroup, showsGroupIndex) => {
         return (
           <View
@@ -64,11 +76,18 @@ export const SeriesList: FC = () => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    padding: 16,
+  },
   showsContainer: {
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    padding: 16,
     justifyContent: 'space-between',
+  },
+  PIN: {
+    borderWidth: 1,
+    padding: 8,
+    borderRadius: 8,
   },
 });

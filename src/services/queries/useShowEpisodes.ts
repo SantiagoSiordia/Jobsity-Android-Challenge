@@ -1,6 +1,6 @@
+import { getShowEpisodes } from '@services';
 import { useQuery, useQueryClient } from 'react-query';
 import { QUERIES } from '.';
-import { getShowEpisodes } from '@services';
 
 export const useShowEpisodes = (showId: string) => {
   const queryClient = useQueryClient();

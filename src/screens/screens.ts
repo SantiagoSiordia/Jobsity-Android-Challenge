@@ -4,4 +4,5 @@ export const SCREENS = {
   SHOW_DETAILS: 'Show details',
   IMAGE: 'Image',
   EPISODE_DETAILS: 'Episode details',
+  PIN: 'PIN',
 };

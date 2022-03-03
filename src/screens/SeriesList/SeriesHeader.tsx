@@ -1,13 +1,13 @@
+import { useNavigation } from '@react-navigation/native';
 import { NativeStackHeaderProps } from '@react-navigation/native-stack';
+import type { StackNavigationProp } from '@react-navigation/stack';
+import { SCREENS } from '@screens';
+import { useInfiniteShows } from '@services';
 import React, { FC } from 'react';
 import { StyleSheet, Text } from 'react-native';
-import { useInfiniteShows } from '@services';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import { useNavigation } from '@react-navigation/native';
-import { SCREENS } from '@screens';
-import type { StackNavigationProp } from '@react-navigation/stack';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export const SeriesHeader: FC<NativeStackHeaderProps> = () => {
   const { data: shows } = useInfiniteShows();

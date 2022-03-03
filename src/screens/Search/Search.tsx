@@ -1,7 +1,7 @@
+import { Loading, Show } from '@components';
+import { useAppSelector, useShowSearchResult } from '@services';
 import React, { FC } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { Show, Loading } from '@components';
-import { useAppSelector, useShowSearchResult } from '@services';
 
 export const Search: FC = () => {
   const searchQuery = useAppSelector(state => state.search.query);

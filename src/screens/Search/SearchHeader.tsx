@@ -1,13 +1,13 @@
-import { NativeStackHeaderProps } from '@react-navigation/native-stack';
-import React, { FC, useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Button } from '@components';
 import { useNavigation } from '@react-navigation/native';
-import { useDispatch } from 'react-redux';
-import { useAppSelector, setQuery } from '@services';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { NativeStackHeaderProps } from '@react-navigation/native-stack';
+import { setQuery, useAppSelector } from '@services';
+import React, { FC, useState } from 'react';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useDispatch } from 'react-redux';
 
 export const SearchHeader: FC<NativeStackHeaderProps> = () => {
   const [showToSearch, setShowToSearch] = useState<string>('');

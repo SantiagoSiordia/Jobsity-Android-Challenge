@@ -1,9 +1,9 @@
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { ImageRoute, ParamList } from '@services';
 import React, { FC } from 'react';
 import { ImageBackground, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { ImageRoute, ParamList } from '@services';
 
 export const Image: FC = () => {
   const { goBack } = useNavigation();

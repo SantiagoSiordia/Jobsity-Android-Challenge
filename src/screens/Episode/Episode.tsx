@@ -1,5 +1,9 @@
+import { Loading } from '@components';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { defaultNoImageURI } from '@resources';
+import { SCREENS } from '@screens';
+import { EpisodeRoute, ParamList, useEpisode } from '@services';
 import React, { FC } from 'react';
 import {
   ImageBackground,
@@ -10,10 +14,6 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import RenderHtml from 'react-native-render-html';
-import { SCREENS } from '@screens';
-import { Loading } from '@components';
-import { defaultNoImageURI } from '@resources';
-import { EpisodeRoute, ParamList, useEpisode } from '@services';
 
 export const Episode: FC = () => {
   const {

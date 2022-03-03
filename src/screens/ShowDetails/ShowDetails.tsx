@@ -8,14 +8,17 @@ import {
   Text,
   View,
   Dimensions,
+  Image,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { defaultNoImageURI } from '../../resources';
-import { DetailRoute, ParamList, Routes } from '../../services/navigation';
+import { DetailRoute, ParamList } from '../../services/navigation';
 import { useShow } from '../../services/queries/useShow';
 import RenderHtml from 'react-native-render-html';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { SCREENS } from '..';
+import { useShowEpisodes } from '../../services/queries/useShowEpisodes';
+import { Episode } from '../../services/api/getShowEpisodes';
 
 const height = Dimensions.get('screen').height;
 
@@ -25,6 +28,11 @@ export const ShowDetails: FC = () => {
   } = useRoute<RouteProp<ParamList, DetailRoute>>();
   const { push } = useNavigation<StackNavigationProp<any>>();
   const { data: show, isLoading, isError } = useShow(showId);
+  const {
+    data: showEpisodes,
+    isLoading: isLoadingEpisodes,
+    isError: isErrorEpisodes,
+  } = useShowEpisodes(showId);
 
   const handleOnShowImage = () => {
     push(SCREENS.IMAGE, {
@@ -52,64 +60,92 @@ export const ShowDetails: FC = () => {
     return null;
   }
 
+  const restructuredEpisodes: Record<string, Array<Episode>> = {};
+
+  showEpisodes?.forEach(episode => {
+    if (restructuredEpisodes[episode.season] === undefined) {
+      restructuredEpisodes[episode.season] = [];
+    }
+    restructuredEpisodes[episode.season] = [
+      ...restructuredEpisodes[episode.season],
+      episode,
+    ];
+  });
+
   return (
-    <View style={styles.container}>
+    <ImageBackground
+      source={{ uri: show.image?.original ?? defaultNoImageURI }}
+      style={styles.image}>
       <ScrollView>
-        <ImageBackground
-          source={{ uri: show.image?.original ?? defaultNoImageURI }}
-          style={styles.image}>
-          <LinearGradient
-            colors={[
-              'rgba(0, 0, 0, 0)',
-              'rgba(255, 255, 255, 0.6)',
-              'white',
-              'white',
-              'white',
-            ]}
-            style={styles.linearGradient}>
-            <Pressable
-              onPress={handleOnShowImage}
-              style={styles.invisiblePressable}
-            />
-            <Text style={styles.title}>{show.name}</Text>
-            <Text style={styles.airText}>
-              {show.schedule.days.length === 0 ? 'Someday' : show.schedule.days}
-              s at{' '}
-              {show.schedule.time === '' ? 'some hour' : show.schedule.time}
-            </Text>
-            <Text style={styles.infoTextTitle}>Genres:</Text>
-            <Text style={styles.infoText}>
-              {show.genres.map(
-                (genre, index) =>
-                  `${genre}${index === show.genres.length - 1 ? '.' : ','} `,
-              )}
-            </Text>
-            <Text style={styles.infoTextTitle}>Summary:</Text>
-            <RenderHtml
-              contentWidth={100}
-              source={{
-                html: show.summary,
-              }}
-            />
-            <Text style={styles.title}>List of episodes</Text>
-            <Text style={styles.infoTextTitle}>Season 1</Text>
-          </LinearGradient>
-        </ImageBackground>
+        <LinearGradient
+          colors={['rgba(255, 255, 255, 0)', 'white']}
+          style={styles.linearGradient}>
+          <Pressable
+            onPress={handleOnShowImage}
+            style={styles.invisiblePressable}
+          />
+        </LinearGradient>
+        <View style={styles.container}>
+          <Text style={styles.title}>{show.name}</Text>
+          <Text style={styles.airText}>
+            {show.schedule.days.length === 0 ? 'Someday' : show.schedule.days}s
+            at {show.schedule.time === '' ? 'some hour' : show.schedule.time}
+          </Text>
+          <Text style={styles.infoTextTitle}>Genres:</Text>
+          <Text style={styles.infoText}>
+            {show.genres.map(
+              (genre, index) =>
+                `${genre}${index === show.genres.length - 1 ? '.' : ','} `,
+            )}
+          </Text>
+          <Text style={styles.infoTextTitle}>Summary:</Text>
+          <RenderHtml
+            contentWidth={100}
+            source={{
+              html: show.summary,
+            }}
+          />
+          <Text style={styles.title}>List of episodes</Text>
+          {Object.entries(restructuredEpisodes).map(([season, episodes]) => {
+            return (
+              <View key={show.name + '-season-' + season}>
+                <Text style={styles.season}>Season {season}</Text>
+                <View style={styles.episodesContainer}>
+                  {episodes.map(episode => {
+                    return (
+                      <View
+                        key={'episode-' + show.name + '-' + episode.id}
+                        style={styles.episodeContainer}>
+                        <Text style={styles.episodeName}>{episode.name}</Text>
+                        <Image
+                          source={{ uri: episode.image.medium }}
+                          style={styles.episodeImage}
+                        />
+                      </View>
+                    );
+                  })}
+                </View>
+              </View>
+            );
+          })}
+        </View>
       </ScrollView>
-    </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    padding: 16,
+    backgroundColor: 'white',
   },
   image: {
     flex: 1,
+    maxHeight: height,
   },
   linearGradient: {
     flex: 1,
-    padding: 16,
+    height: height * 0.35,
   },
   title: {
     fontSize: 32,
@@ -133,7 +169,34 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   invisiblePressable: {
-    height: height * 0.2,
-    width: '100%',
+    flex: 1,
+  },
+  episodeImage: {
+    width: 170,
+    aspectRatio: 1.6,
+    borderRadius: 8,
+  },
+  episodesContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  episodeContainer: {
+    alignSelf: 'baseline',
+    marginBottom: 4,
+  },
+  episodeName: {
+    width: 110,
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: 'black',
+  },
+  season: {
+    textAlign: 'left',
+    alignSelf: 'flex-start',
+    fontSize: 24,
+    marginVertical: 24,
+    fontWeight: 'bold',
   },
 });

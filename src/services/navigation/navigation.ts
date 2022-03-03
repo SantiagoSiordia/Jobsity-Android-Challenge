@@ -18,5 +18,6 @@ export type ParamList = {
   };
   Episode: {
     episodeId: string;
+    showId: string;
   };
 };

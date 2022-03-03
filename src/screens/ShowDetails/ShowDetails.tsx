@@ -72,6 +72,7 @@ export const ShowDetails: FC = () => {
   const handleOnSeeEpisode = (episodeId: number) => {
     push(SCREENS.EPISODE_DETAILS, {
       episodeId,
+      showId: show.id,
     });
   };
 

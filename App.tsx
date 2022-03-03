@@ -12,7 +12,6 @@ import {
   ShowDetailsHeader,
   Image,
   Episode,
-  EpisodeHeader,
 } from './src/screens';
 
 const Stack = createNativeStackNavigator();
@@ -62,7 +61,7 @@ const App = () => {
               name={SCREENS.EPISODE_DETAILS}
               component={Episode}
               options={{
-                header: headerProps => <EpisodeHeader {...headerProps} />,
+                header: headerProps => <ShowDetailsHeader {...headerProps} />,
               }}
             />
           </Stack.Navigator>

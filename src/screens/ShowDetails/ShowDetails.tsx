@@ -10,15 +10,12 @@ import {
   Image,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { defaultNoImageURI } from '../../resources';
-import { DetailRoute, ParamList } from '../../services/navigation';
-import { useShow } from '../../services/queries/useShow';
+import { defaultNoImageURI } from '@resources';
 import RenderHtml from 'react-native-render-html';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { SCREENS } from '..';
-import { useShowEpisodes } from '../../services/queries/useShowEpisodes';
-import { Episode } from '../../services/api/getShowEpisodes';
-import { Loading } from '../../components';
+import { SCREENS } from '@screens';
+import { Episode, useShowEpisodes, useShow, DetailRoute, ParamList } from '@services';
+import { Loading } from '@components';
 
 export const ShowDetails: FC = () => {
   const {

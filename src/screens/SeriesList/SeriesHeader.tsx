@@ -1,10 +1,10 @@
 import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
 import { StyleSheet, Text } from 'react-native';
-import { useInfiniteShows } from '../../services';
+import { useInfiniteShows } from '@services';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useNavigation } from '@react-navigation/native';
-import { SCREENS } from '../screens';
+import { SCREENS } from '@screens';
 import type { StackNavigationProp } from '@react-navigation/stack';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';

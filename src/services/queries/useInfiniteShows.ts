@@ -1,5 +1,5 @@
 import { useInfiniteQuery, useQueryClient } from 'react-query';
-import { getPaginatedShows } from '../api/getPaginatedShows';
+import { getPaginatedShows } from '@services';
 import { QUERIES } from './queries';
 
 export const useInfiniteShows = () => {

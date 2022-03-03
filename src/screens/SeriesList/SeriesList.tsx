@@ -6,8 +6,8 @@ import {
   Text,
   View,
 } from 'react-native';
-import { useInfiniteShows } from '../../services';
-import { Show, Loading } from '../../components';
+import { useInfiniteShows } from '@services';
+import { Show, Loading } from '@components';
 
 const isCloseToBottom = ({
   layoutMeasurement,

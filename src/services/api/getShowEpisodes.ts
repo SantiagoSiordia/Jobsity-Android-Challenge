@@ -1,4 +1,4 @@
-import { api, ENDPOINTS } from '.';
+import { api, ENDPOINTS, Image, Links, Rating } from '.';
 
 export interface Episode {
   id: number;
@@ -17,21 +17,8 @@ export interface Episode {
   links: Links;
 }
 
-export interface Image {
-  medium: string;
-  original: string;
-}
-
-export interface Links {
-  self: Self;
-}
-
 export interface Self {
   href: string;
-}
-
-export interface Rating {
-  average: number;
 }
 
 export const getShowEpisodes = async (showId: string) => {

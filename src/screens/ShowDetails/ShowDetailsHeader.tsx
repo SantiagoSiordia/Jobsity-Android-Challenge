@@ -3,8 +3,7 @@ import React, { FC } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
-import { DetailRoute, ParamList } from '../../services/navigation';
-import { useShow } from '../../services/queries/useShow';
+import { useShow, DetailRoute, ParamList } from '@services';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
 

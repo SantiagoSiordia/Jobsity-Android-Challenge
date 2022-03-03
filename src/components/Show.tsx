@@ -2,9 +2,9 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { FC } from 'react';
 import { Image, Pressable, StyleSheet, Text } from 'react-native';
-import { defaultNoImageURI } from '../resources';
-import { SCREENS } from '../screens';
-import { ShowType } from '../services';
+import { defaultNoImageURI } from '@resources';
+import { SCREENS } from '@screens';
+import { ShowType } from '@services';
 
 export interface ShowProps {
   show: ShowType;

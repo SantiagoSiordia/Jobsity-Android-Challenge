@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { getShowsByName } from '../api/getShowsByName';
+import { getShowsByName } from '@services';
 import { QUERIES } from './queries';
 
 export const useShowSearchResult = (q: string) => {

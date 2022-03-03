@@ -2,11 +2,10 @@ import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 import React, { FC, useState } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { Button } from '../../components';
+import { Button } from '@components';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
-import { setQuery } from '../../services/redux/search';
-import { useAppSelector } from '../../services/redux';
+import { useAppSelector, setQuery } from '@services';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
 

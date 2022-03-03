@@ -72,6 +72,12 @@ export const ShowDetails: FC = () => {
     ];
   });
 
+  const handleOnSeeEpisode = (episodeId: number) => {
+    push(SCREENS.EPISODE_DETAILS, {
+      episodeId,
+    });
+  };
+
   return (
     <ImageBackground
       source={{ uri: show.image?.original ?? defaultNoImageURI }}
@@ -113,7 +119,8 @@ export const ShowDetails: FC = () => {
                 <View style={styles.episodesContainer}>
                   {episodes.map(episode => {
                     return (
-                      <View
+                      <Pressable
+                        onPress={() => handleOnSeeEpisode(episode.id)}
                         key={'episode-' + show.name + '-' + episode.id}
                         style={styles.episodeContainer}>
                         <Text style={styles.episodeName}>{episode.name}</Text>
@@ -123,7 +130,7 @@ export const ShowDetails: FC = () => {
                           }}
                           style={styles.episodeImage}
                         />
-                      </View>
+                      </Pressable>
                     );
                   })}
                 </View>

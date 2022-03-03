@@ -6,6 +6,7 @@ export const ENDPOINTS = {
   SHOW_DETAILS: '/shows/',
   SHOW_EPISODES: (showId: string) =>
     `${ENDPOINTS.SHOW_DETAILS + showId}/episodes`,
+  EPISODES: (episodeId: string) => `/episodes/${episodeId}`,
 };
 
 export const api = axios.create({

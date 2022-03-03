@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import RenderHTML from 'react-native-render-html';
+import RenderHtml from 'react-native-render-html';
 import { SCREENS } from '..';
 import { defaultNoImageURI } from '../../resources';
 import { EpisodeRoute, ParamList } from '../../services/navigation';
@@ -70,7 +70,14 @@ export const Episode: FC = () => {
         <Text style={styles.infoTitle}>Season:</Text>
         <Text style={styles.infoText}>{episode.season}</Text>
         <Text style={styles.infoTitle}>Summary:</Text>
-        <RenderHTML source={{ html: episode.summary }} contentWidth={100} />
+        {episode.summary !== null && episode.summary !== undefined && (
+          <RenderHtml
+            contentWidth={100}
+            source={{
+              html: episode.summary,
+            }}
+          />
+        )}
       </View>
     </>
   );

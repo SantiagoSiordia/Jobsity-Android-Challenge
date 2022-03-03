@@ -1,13 +1,18 @@
 export type DetailRoute = 'Details';
+export type ImageRoute = 'Image';
 
-export type Routes = DetailRoute;
+export type Routes = DetailRoute | ImageRoute;
 
 export const ROUTES: Record<string, Routes> = {
   DETAILS: 'Details',
+  IMAGE: 'Image',
 };
 
 export type ParamList = {
-  [ROUTES.DETAILS]: {
+  Details: {
     showId: string;
+  };
+  Image: {
+    image: string;
   };
 };

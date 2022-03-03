@@ -11,6 +11,7 @@ import {
   SeriesList,
   ShowDetails,
   ShowDetailsHeader,
+  Image,
 } from './src/screens';
 
 const Stack = createNativeStackNavigator();
@@ -47,6 +48,13 @@ const App = () => {
                 component={ShowDetails}
                 options={{
                   header: headerProps => <ShowDetailsHeader {...headerProps} />,
+                }}
+              />
+              <Stack.Screen
+                name={SCREENS.IMAGE}
+                component={Image}
+                options={{
+                  headerShown: false,
                 }}
               />
             </Stack.Navigator>

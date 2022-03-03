@@ -72,6 +72,8 @@ export const ShowDetails: FC = () => {
     ];
   });
 
+  console.log(show.id);
+
   return (
     <ImageBackground
       source={{ uri: show.image?.original ?? defaultNoImageURI }}
@@ -118,7 +120,9 @@ export const ShowDetails: FC = () => {
                         style={styles.episodeContainer}>
                         <Text style={styles.episodeName}>{episode.name}</Text>
                         <Image
-                          source={{ uri: episode.image.medium }}
+                          source={{
+                            uri: episode?.image?.medium ?? defaultNoImageURI,
+                          }}
                           style={styles.episodeImage}
                         />
                       </View>

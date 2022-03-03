@@ -3,4 +3,5 @@ export const SCREENS = {
   SEARCH_SHOWS: 'Search shows',
   SHOW_DETAILS: 'Show details',
   IMAGE: 'Image',
+  EPISODE_DETAILS: 'Episode details',
 };

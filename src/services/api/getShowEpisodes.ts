@@ -12,7 +12,7 @@ export interface Episode {
   airstamp: Date;
   runtime: number;
   rating: Rating;
-  image: Image;
+  image: Image | null;
   summary: string;
   links: Links;
 }

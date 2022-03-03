@@ -26,7 +26,7 @@ export const PIN: FC = () => {
 
   const [pin, setPin] = useState<string>('');
 
-  const { replace } = useNavigation<StackNavigationProp<any>>();
+  const navigation = useNavigation<StackNavigationProp<any>>();
 
   const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -50,7 +50,7 @@ export const PIN: FC = () => {
       optionalConfigObject,
     )
       .then(() => {
-        replace(SCREENS.SERIES_LIST);
+        navigation.replace(SCREENS.SERIES_LIST);
       })
       .catch(() => {
         console.log('Authentication Failed');

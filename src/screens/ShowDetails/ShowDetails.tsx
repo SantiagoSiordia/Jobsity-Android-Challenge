@@ -7,7 +7,6 @@ import {
   StyleSheet,
   Text,
   View,
-  Dimensions,
   Image,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
@@ -19,8 +18,6 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { SCREENS } from '..';
 import { useShowEpisodes } from '../../services/queries/useShowEpisodes';
 import { Episode } from '../../services/api/getShowEpisodes';
-
-const height = Dimensions.get('screen').height;
 
 export const ShowDetails: FC = () => {
   const {
@@ -79,10 +76,10 @@ export const ShowDetails: FC = () => {
   };
 
   return (
-    <ImageBackground
-      source={{ uri: show.image?.original ?? defaultNoImageURI }}
-      style={styles.image}>
-      <ScrollView>
+    <ScrollView>
+      <ImageBackground
+        source={{ uri: show.image?.original ?? defaultNoImageURI }}
+        style={styles.image}>
         <LinearGradient
           colors={['rgba(255, 255, 255, 0)', 'white']}
           style={styles.linearGradient}>
@@ -91,55 +88,55 @@ export const ShowDetails: FC = () => {
             style={styles.invisiblePressable}
           />
         </LinearGradient>
-        <View style={styles.container}>
-          <Text style={styles.title}>{show.name}</Text>
-          <Text style={styles.airText}>
-            {show.schedule.days.length === 0 ? 'Someday' : show.schedule.days}s
-            at {show.schedule.time === '' ? 'some hour' : show.schedule.time}
-          </Text>
-          <Text style={styles.infoTextTitle}>Genres:</Text>
-          <Text style={styles.infoText}>
-            {show.genres.map(
-              (genre, index) =>
-                `${genre}${index === show.genres.length - 1 ? '.' : ','} `,
-            )}
-          </Text>
-          <Text style={styles.infoTextTitle}>Summary:</Text>
-          <RenderHtml
-            contentWidth={100}
-            source={{
-              html: show.summary,
-            }}
-          />
-          <Text style={styles.title}>List of episodes</Text>
-          {Object.entries(restructuredEpisodes).map(([season, episodes]) => {
-            return (
-              <View key={show.name + '-season-' + season}>
-                <Text style={styles.season}>Season {season}</Text>
-                <View style={styles.episodesContainer}>
-                  {episodes.map(episode => {
-                    return (
-                      <Pressable
-                        onPress={() => handleOnSeeEpisode(episode.id)}
-                        key={'episode-' + show.name + '-' + episode.id}
-                        style={styles.episodeContainer}>
-                        <Text style={styles.episodeName}>{episode.name}</Text>
-                        <Image
-                          source={{
-                            uri: episode?.image?.medium ?? defaultNoImageURI,
-                          }}
-                          style={styles.episodeImage}
-                        />
-                      </Pressable>
-                    );
-                  })}
-                </View>
+      </ImageBackground>
+      <View style={styles.container}>
+        <Text style={styles.title}>{show.name}</Text>
+        <Text style={styles.airText}>
+          {show.schedule.days.length === 0 ? 'Someday' : show.schedule.days}s at{' '}
+          {show.schedule.time === '' ? 'some hour' : show.schedule.time}
+        </Text>
+        <Text style={styles.infoTextTitle}>Genres:</Text>
+        <Text style={styles.infoText}>
+          {show.genres.map(
+            (genre, index) =>
+              `${genre}${index === show.genres.length - 1 ? '.' : ','} `,
+          )}
+        </Text>
+        <Text style={styles.infoTextTitle}>Summary:</Text>
+        <RenderHtml
+          contentWidth={100}
+          source={{
+            html: show.summary,
+          }}
+        />
+        <Text style={styles.title}>List of episodes</Text>
+        {Object.entries(restructuredEpisodes).map(([season, episodes]) => {
+          return (
+            <View key={show.name + '-season-' + season}>
+              <Text style={styles.season}>Season {season}</Text>
+              <View style={styles.episodesContainer}>
+                {episodes.map(episode => {
+                  return (
+                    <Pressable
+                      onPress={() => handleOnSeeEpisode(episode.id)}
+                      key={'episode-' + show.name + '-' + episode.id}
+                      style={styles.episodeContainer}>
+                      <Text style={styles.episodeName}>{episode.name}</Text>
+                      <Image
+                        source={{
+                          uri: episode?.image?.medium ?? defaultNoImageURI,
+                        }}
+                        style={styles.episodeImage}
+                      />
+                    </Pressable>
+                  );
+                })}
               </View>
-            );
-          })}
-        </View>
-      </ScrollView>
-    </ImageBackground>
+            </View>
+          );
+        })}
+      </View>
+    </ScrollView>
   );
 };
 
@@ -149,12 +146,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   image: {
-    flex: 1,
-    maxHeight: height,
+    width: '100%',
+    height: 200,
   },
   linearGradient: {
     flex: 1,
-    height: height * 0.35,
+    height: 200,
   },
   title: {
     fontSize: 32,

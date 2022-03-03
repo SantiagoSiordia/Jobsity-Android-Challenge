@@ -69,6 +69,8 @@ export const Episode: FC = () => {
         <Text style={styles.infoText}>{episode.name}</Text>
         <Text style={styles.infoTitle}>Season:</Text>
         <Text style={styles.infoText}>{episode.season}</Text>
+        <Text style={styles.infoTitle}>Episode number:</Text>
+        <Text style={styles.infoText}>{episode.number}</Text>
         <Text style={styles.infoTitle}>Summary:</Text>
         {episode.summary !== null && episode.summary !== undefined && (
           <RenderHtml

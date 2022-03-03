@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { Show } from '../../components';
+import { Show, Loading } from '../../components';
 import { useShowSearchResult } from '../../services/queries/useShowSearchResult';
 import { useAppSelector } from '../../services/redux';
 
@@ -13,11 +13,7 @@ export const Search: FC = () => {
   } = useShowSearchResult(searchQuery);
 
   if (isLoading) {
-    return (
-      <View>
-        <Text>Is loading</Text>
-      </View>
-    );
+    return <Loading />;
   }
 
   if (isError) {

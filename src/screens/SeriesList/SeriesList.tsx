@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import { useInfiniteShows } from '../../services';
-import { Show } from '../../components';
+import { Show, Loading } from '../../components';
 
 const isCloseToBottom = ({
   layoutMeasurement,
@@ -25,11 +25,7 @@ export const SeriesList: FC = () => {
   const { data: shows, isLoading, isError, fetchNextPage } = useInfiniteShows();
 
   if (isLoading) {
-    return (
-      <View>
-        <Text>Is loading</Text>
-      </View>
-    );
+    return <Loading />;
   }
 
   if (isError) {

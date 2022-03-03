@@ -18,6 +18,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { SCREENS } from '..';
 import { useShowEpisodes } from '../../services/queries/useShowEpisodes';
 import { Episode } from '../../services/api/getShowEpisodes';
+import { Loading } from '../../components';
 
 export const ShowDetails: FC = () => {
   const {
@@ -38,11 +39,7 @@ export const ShowDetails: FC = () => {
   };
 
   if (isLoading) {
-    return (
-      <View>
-        <Text>Is loading</Text>
-      </View>
-    );
+    return <Loading />;
   }
 
   if (isError) {

@@ -11,6 +11,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import RenderHtml from 'react-native-render-html';
 import { SCREENS } from '..';
+import { Loading } from '../../components/Loading';
 import { defaultNoImageURI } from '../../resources';
 import { EpisodeRoute, ParamList } from '../../services/navigation';
 import { useEpisode } from '../../services/queries/useEpisode';
@@ -23,11 +24,7 @@ export const Episode: FC = () => {
   const { data: episode, isLoading, isError } = useEpisode(episodeId);
 
   if (isLoading) {
-    return (
-      <View>
-        <Text>Is loading</Text>
-      </View>
-    );
+    return <Loading />;
   }
 
   if (isError) {

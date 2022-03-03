@@ -2,35 +2,35 @@ import { QueryFunctionContext } from 'react-query';
 import { api, ENDPOINTS } from './api';
 
 export interface ShowType {
-  id: number;
-  url: string;
-  name: string;
-  type: string;
-  language: string;
-  genres: string[];
-  status: string;
-  runtime: number;
   averageRuntime: number;
-  premiered: Date;
-  ended: Date;
-  officialSite: string;
-  schedule: Schedule;
-  rating: Rating;
-  weight: number;
-  network: Network;
-  webChannel: null;
   dvdCountry: null;
+  ended: Date;
   externals: Externals;
+  genres: string[];
+  id: number;
   image: Image | null;
-  summary: string;
-  updated: number;
+  language: string;
   links: Links;
+  name: string;
+  network: Network;
+  officialSite: string;
+  premiered: Date;
+  rating: Rating;
+  runtime: number;
+  schedule: Schedule;
+  status: string;
+  summary: string;
+  type: string;
+  updated: number;
+  url: string;
+  webChannel: null;
+  weight: number;
 }
 
 export interface Externals {
-  tvrage: number;
-  thetvdb: number;
   imdb: string;
+  thetvdb: number;
+  tvrage: number;
 }
 
 export interface Image {
@@ -39,8 +39,8 @@ export interface Image {
 }
 
 export interface Links {
-  self: Previousepisode;
   previousepisode: Previousepisode;
+  self: Previousepisode;
 }
 
 export interface Previousepisode {
@@ -48,14 +48,14 @@ export interface Previousepisode {
 }
 
 export interface Network {
+  country: Country;
   id: number;
   name: string;
-  country: Country;
 }
 
 export interface Country {
-  name: string;
   code: string;
+  name: string;
   timezone: string;
 }
 
@@ -64,12 +64,12 @@ export interface Rating {
 }
 
 export interface Schedule {
-  time: string;
   days: string[];
+  time: string;
 }
 
 export const getPaginatedShows = async (
-  context: QueryFunctionContext<string, any>,
+  context: QueryFunctionContext<string, string>,
 ) => {
   try {
     const { data } = await api.get<Array<ShowType>>(ENDPOINTS.SHOWS, {

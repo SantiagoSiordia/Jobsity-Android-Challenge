@@ -20,47 +20,48 @@ export const Navigator: FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
+        initialRouteName={SCREENS.SERIES_LIST}
         screenOptions={{
           animation: 'fade',
         }}>
         <Stack.Screen
-          name={SCREENS.PIN}
           component={PIN}
+          name={SCREENS.PIN}
           options={{
             headerShown: false,
           }}
         />
         <Stack.Screen
-          name={SCREENS.SERIES_LIST}
           component={SeriesList}
+          name={SCREENS.SERIES_LIST}
           options={{
             header: headerProps => <SeriesHeader {...headerProps} />,
           }}
         />
         <Stack.Screen
-          name={SCREENS.SEARCH_SHOWS}
           component={Search}
+          name={SCREENS.SEARCH_SHOWS}
           options={{
             header: headerProps => <SearchHeader {...headerProps} />,
           }}
         />
         <Stack.Screen
-          name={SCREENS.SHOW_DETAILS}
           component={ShowDetails}
+          name={SCREENS.SHOW_DETAILS}
           options={{
             header: headerProps => <ShowDetailsHeader {...headerProps} />,
           }}
         />
         <Stack.Screen
-          name={SCREENS.IMAGE}
           component={Image}
+          name={SCREENS.IMAGE}
           options={{
             headerShown: false,
           }}
         />
         <Stack.Screen
-          name={SCREENS.EPISODE_DETAILS}
           component={Episode}
+          name={SCREENS.EPISODE_DETAILS}
           options={{
             header: headerProps => <ShowDetailsHeader {...headerProps} />,
           }}

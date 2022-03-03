@@ -12,18 +12,14 @@
       "@components": ["src/components"],
       "@services": ["src/services"],
       "@resources": ["src/resources"],
-      "@screens": ["src/screens"],
+      "@screens": ["src/screens"]
     },
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true 
+    "resolveJsonModule": true
   },
   "include": ["src"],
-  "exclude": [
-    "node_modules",
-    "babel.config.js",
-    "metro.config.js",
-  ]
+  "exclude": ["node_modules", "babel.config.js", "metro.config.js"]
 }

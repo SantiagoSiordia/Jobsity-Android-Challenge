@@ -13,11 +13,11 @@ export type ParamList = {
   Details: {
     showId: string;
   };
-  Image: {
-    image: string;
-  };
   Episode: {
     episodeId: string;
     showId: string;
+  };
+  Image: {
+    image: string;
   };
 };

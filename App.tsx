@@ -19,6 +19,9 @@ const queryClient = new QueryClient();
 import { Provider } from 'react-redux';
 import { store } from './src/services/redux';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['Require cycle:']);
 
 const App = () => {
   return (

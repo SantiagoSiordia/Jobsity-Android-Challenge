@@ -2,15 +2,13 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { FC } from 'react';
 import { Image, Pressable, StyleSheet, Text } from 'react-native';
+import { defaultNoImageURI } from '../resources';
 import { SCREENS } from '../screens';
 import { ShowType } from '../services';
 
 export interface ShowProps {
   show: ShowType;
 }
-
-const defaultNoImageURI =
-  'https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg';
 
 export const Show: FC<ShowProps> = ({ show }) => {
   const { push } = useNavigation<StackNavigationProp<any>>();
@@ -26,7 +24,7 @@ export const Show: FC<ShowProps> = ({ show }) => {
       <Text style={styles.showName}>{show.name}</Text>
       <Image
         source={{
-          uri: show.image !== null ? show.image.medium : defaultNoImageURI,
+          uri: show.image?.medium ?? defaultNoImageURI,
         }}
         style={styles.image}
       />

@@ -12,6 +12,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { defaultNoImageURI } from '../../resources';
 import { ParamList, Routes } from '../../services/navigation';
 import { useShow } from '../../services/queries/useShow';
+import RenderHtml from 'react-native-render-html';
 
 export const ShowDetails: FC = () => {
   const {
@@ -43,32 +44,40 @@ export const ShowDetails: FC = () => {
 
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={{ uri: show.image?.original ?? defaultNoImageURI }}
-        style={styles.image}>
-        <LinearGradient
-          colors={[
-            'rgba(0, 0, 0, 0)',
-            'rgba(255, 255, 255, 0.6)',
-            'white',
-            'white',
-            'white',
-          ]}
-          style={styles.linearGradient}>
-          <Text style={styles.title}>{show.name}</Text>
-          <Text style={styles.airText}>
-            {show.schedule.days}s at {show.schedule.time}
-          </Text>
-          <Text style={styles.infoText}>
-            Genres:{' '}
-            {show.genres.map(
-              (genre, index) =>
-                `${genre}${index === show.genres.length - 1 ? '.' : ','} `,
-            )}
-          </Text>
-          <Text style={styles.infoText}>Summary: {show.summary}</Text>
-        </LinearGradient>
-      </ImageBackground>
+      <ScrollView>
+        <ImageBackground
+          source={{ uri: show.image?.original ?? defaultNoImageURI }}
+          style={styles.image}>
+          <LinearGradient
+            colors={[
+              'rgba(0, 0, 0, 0)',
+              'rgba(255, 255, 255, 0.6)',
+              'white',
+              'white',
+              'white',
+            ]}
+            style={styles.linearGradient}>
+            <Text style={styles.title}>{show.name}</Text>
+            <Text style={styles.airText}>
+              {show.schedule.days}s at {show.schedule.time}
+            </Text>
+            <Text style={styles.infoTextTitle}>Genres:</Text>
+            <Text style={styles.infoText}>
+              {show.genres.map(
+                (genre, index) =>
+                  `${genre}${index === show.genres.length - 1 ? '.' : ','} `,
+              )}
+            </Text>
+            <Text style={styles.infoTextTitle}>Summary:</Text>
+            <RenderHtml
+              contentWidth={100}
+              source={{
+                html: show.summary,
+              }}
+            />
+          </LinearGradient>
+        </ImageBackground>
+      </ScrollView>
     </View>
   );
 };
@@ -96,8 +105,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     lineHeight: 24,
   },
-  infoText: {
+  infoTextTitle: {
     fontSize: 14,
     lineHeight: 24,
+    fontWeight: 'bold',
+  },
+  infoText: {
+    fontSize: 14,
+    lineHeight: 20,
+    marginBottom: 16,
   },
 });

@@ -45,7 +45,7 @@ export const SearchHeader: FC<NativeStackHeaderProps> = () => {
         <Icon name="clear" size={30} color="white" onPress={handleClear} />
       </View>
       <Text style={styles.searchingFor}>
-        Searching for <Text style={styles.searchQuery}>"{searchQuery}"</Text>
+        Results for <Text style={styles.searchQuery}>"{searchQuery}"</Text>
       </Text>
     </View>
   );

@@ -72,8 +72,6 @@ export const ShowDetails: FC = () => {
     ];
   });
 
-  console.log(show.id);
-
   return (
     <ImageBackground
       source={{ uri: show.image?.original ?? defaultNoImageURI }}

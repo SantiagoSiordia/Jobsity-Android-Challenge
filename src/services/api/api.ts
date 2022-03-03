@@ -3,6 +3,7 @@ import axios from 'axios';
 export const ENDPOINTS = {
   SHOWS: '/shows',
   SEARCH_SHOWS: '/search/shows',
+  SHOW_DETAILS: '/shows/',
 };
 
 export const api = axios.create({

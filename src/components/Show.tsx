@@ -1,5 +1,8 @@
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React, { FC } from 'react';
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text } from 'react-native';
+import { SCREENS } from '../screens';
 import { ShowType } from '../services';
 
 export interface ShowProps {
@@ -10,8 +13,12 @@ const defaultNoImageURI =
   'https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg';
 
 export const Show: FC<ShowProps> = ({ show }) => {
+  const { push } = useNavigation<StackNavigationProp<any>>();
+
   const handleOnShowPress = () => {
-    console.log(show.id);
+    push(SCREENS.SHOW_DETAILS, {
+      showId: show.id,
+    });
   };
 
   return (

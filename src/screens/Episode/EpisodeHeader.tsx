@@ -3,17 +3,17 @@ import React, { FC } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
-import { DetailRoute, ParamList } from '../../services/navigation';
-import { useShow } from '../../services/queries/useShow';
+import { EpisodeRoute, ParamList } from '../../services/navigation';
+import { useEpisode } from '../../services/queries/useEpisode';
 
-export const ShowDetailsHeader: FC<NativeStackHeaderProps> = () => {
+export const EpisodeHeader: FC<NativeStackHeaderProps> = () => {
   const { goBack } = useNavigation();
 
   const {
-    params: { showId },
-  } = useRoute<RouteProp<ParamList, DetailRoute>>();
+    params: { episodeId },
+  } = useRoute<RouteProp<ParamList, EpisodeRoute>>();
 
-  const { data: show, isLoading } = useShow(showId);
+  const { data: episode, isLoading } = useEpisode(episodeId);
 
   const handleClear = () => goBack();
 
@@ -22,7 +22,7 @@ export const ShowDetailsHeader: FC<NativeStackHeaderProps> = () => {
       {isLoading ? (
         <Text style={styles.title}>Loading</Text>
       ) : (
-        <Text style={styles.title}>{show?.name}</Text>
+        <Text style={styles.title}>{episode?.name}</Text>
       )}
       <Icon name="clear" size={30} color="white" onPress={handleClear} />
     </View>

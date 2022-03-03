@@ -30,8 +30,8 @@ export const ShowDetails: FC = () => {
   const { data: show, isLoading, isError } = useShow(showId);
   const {
     data: showEpisodes,
-    isLoading: isLoadingEpisodes,
-    isError: isErrorEpisodes,
+    // isLoading: isLoadingEpisodes,
+    // isError: isErrorEpisodes,
   } = useShowEpisodes(showId);
 
   const handleOnShowImage = () => {

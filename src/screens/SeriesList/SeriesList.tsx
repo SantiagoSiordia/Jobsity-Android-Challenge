@@ -1,5 +1,7 @@
 import { Loading, Show } from '@components';
-import { useInfiniteShows } from '@services';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { deletePIN, QUERIES, useInfiniteShows, usePIN } from '@services';
 import React, { FC } from 'react';
 import {
   NativeScrollEvent,
@@ -9,6 +11,8 @@ import {
   Text,
   View,
 } from 'react-native';
+import { useQueryClient } from 'react-query';
+import { SCREENS } from '../screens';
 
 const isCloseToBottom = ({
   layoutMeasurement,
@@ -24,6 +28,11 @@ const isCloseToBottom = ({
 
 export const SeriesList: FC = () => {
   const { data: shows, isLoading, isError, fetchNextPage } = useInfiniteShows();
+  const { push } = useNavigation<StackNavigationProp<any>>();
+
+  const { data: PIN } = usePIN();
+
+  const queryClient = useQueryClient();
 
   if (isLoading) {
     return <Loading />;
@@ -42,23 +51,35 @@ export const SeriesList: FC = () => {
   }
 
   const handleOnCreatePIN = () => {
-    console.log('Create PIN');
+    push(SCREENS.PIN);
+  };
+
+  const handleDeletePIN = () => {
+    deletePIN();
+    queryClient.invalidateQueries(QUERIES.PIN);
   };
 
   return (
     <ScrollView
+      contentContainerStyle={styles.container}
       onScroll={({ nativeEvent }) => {
         if (isCloseToBottom(nativeEvent)) {
           fetchNextPage();
         }
       }}
-      contentContainerStyle={styles.container}
       scrollEventThrottle={400}>
-      <View style={{ flexDirection: 'row' }}>
-        <Pressable style={styles.PIN} onPress={handleOnCreatePIN}>
-          <Text>Create PIN</Text>
-        </Pressable>
-        <View style={{ flex: 1 }} />
+      <View style={styles.PINcontainer}>
+        {PIN === null && (
+          <Pressable onPress={handleOnCreatePIN} style={styles.PIN}>
+            <Text>Create PIN</Text>
+          </Pressable>
+        )}
+        {typeof PIN === 'string' && (
+          <Pressable onPress={handleDeletePIN} style={styles.PIN}>
+            <Text>Delete PIN</Text>
+          </Pressable>
+        )}
+        <View style={styles.filler} />
       </View>
       {shows.pages.map((showsGroup, showsGroupIndex) => {
         return (
@@ -89,5 +110,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 8,
     borderRadius: 8,
+    marginBottom: 16,
+  },
+  PINcontainer: {
+    flexDirection: 'row',
+  },
+  filler: {
+    flex: 1,
   },
 });

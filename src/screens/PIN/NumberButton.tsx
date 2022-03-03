@@ -8,23 +8,30 @@ import {
 } from 'react-native';
 
 export type NumberButtonProps = Pick<PressableProps, 'onPress'> & {
+  disabled: boolean;
   number: number;
 };
 
-export const NumberButton: FC<NumberButtonProps> = ({ number, onPress }) => {
+export const NumberButton: FC<NumberButtonProps> = ({
+  number,
+  disabled,
+  onPress,
+}) => {
   return (
-    <Pressable onPress={onPress}>
+    <Pressable disabled={disabled} onPress={onPress}>
       {({ pressed }) => {
         return (
           <View
             style={StyleSheet.flatten([
               styles.numberButton,
               pressed && styles.numberButtonPressed,
+              disabled && styles.disabledButton,
             ])}>
             <Text
               style={StyleSheet.flatten([
                 styles.numberText,
                 pressed && styles.numberTextPressed,
+                disabled && styles.disabledText,
               ])}>
               {number}
             </Text>
@@ -56,5 +63,11 @@ const styles = StyleSheet.create({
   numberTextPressed: {
     color: 'black',
     fontSize: 32,
+  },
+  disabledButton: {
+    borderColor: 'grey',
+  },
+  disabledText: {
+    color: 'grey',
   },
 });

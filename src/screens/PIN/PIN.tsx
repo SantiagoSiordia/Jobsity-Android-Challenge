@@ -1,12 +1,13 @@
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { SCREENS } from '@screens';
+import { storePIN, usePIN } from '@services';
 import React, { FC, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import TouchID from 'react-native-touch-id';
 import Icon from 'react-native-vector-icons/Entypo';
 import MCIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { SCREENS } from '../screens';
 import { NumberButton } from './NumberButton';
 
 const optionalConfigObject = {
@@ -26,15 +27,24 @@ export const PIN: FC = () => {
 
   const [pin, setPin] = useState<string>('');
 
+  const { data: storedPIN } = usePIN();
+
   const navigation = useNavigation<StackNavigationProp<any>>();
 
   const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   useEffect(() => {
     if (pin.length === 4) {
-      console.log('Do something');
+      if (storedPIN !== null) {
+        if (pin === storedPIN) {
+          navigation.replace(SCREENS.SERIES_LIST);
+        }
+      } else {
+        storePIN(pin);
+        navigation.replace(SCREENS.SERIES_LIST);
+      }
     }
-  }, [pin]);
+  }, [navigation, pin, storedPIN]);
 
   const handleOnNumberPress = (num: number) => {
     if (pin.length < 4) {
@@ -60,7 +70,9 @@ export const PIN: FC = () => {
   return (
     <View
       style={StyleSheet.flatten([styles.container, { paddingTop: top + 16 }])}>
-      <Text style={styles.PINText}>PIN</Text>
+      <Text style={styles.PINText}>
+        {storedPIN === null ? 'Create PIN' : 'PIN'}
+      </Text>
       <View style={styles.PINContainer}>
         {[1, 2, 3, 4].map(element => (
           <View
@@ -73,6 +85,7 @@ export const PIN: FC = () => {
         <View style={styles.numberPad}>
           {numbers.map(num => (
             <NumberButton
+              disabled={pin.length === 4}
               key={'number-' + num}
               number={num}
               onPress={() => handleOnNumberPress(num)}
@@ -88,6 +101,7 @@ export const PIN: FC = () => {
               />
             </View>
             <NumberButton
+              disabled={pin.length === 4}
               key={'number-' + 0}
               number={0}
               onPress={() => handleOnNumberPress(0)}

@@ -1,3 +1,4 @@
+import { Loading } from '@components';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
@@ -13,14 +14,21 @@ import {
   ShowDetailsHeader,
 } from '@screens';
 import React, { FC } from 'react';
+import { usePIN } from '../queries';
 
 const Stack = createNativeStackNavigator();
 
 export const Navigator: FC = () => {
+  const { data: pin, isLoading } = usePIN();
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={SCREENS.SERIES_LIST}
+        initialRouteName={pin === null ? SCREENS.SERIES_LIST : SCREENS.PIN}
         screenOptions={{
           animation: 'fade',
         }}>

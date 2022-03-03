@@ -4,4 +4,5 @@ export const QUERIES = {
   SHOW_DETAILS: 'show details',
   SHOW_EPISODES: 'show episodes',
   EPISODE: 'episode',
+  PIN: 'PIN',
 };

@@ -1,10 +1,12 @@
 import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { EpisodeRoute, ParamList } from '../../services/navigation';
 import { useEpisode } from '../../services/queries/useEpisode';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import LinearGradient from 'react-native-linear-gradient';
 
 export const EpisodeHeader: FC<NativeStackHeaderProps> = () => {
   const { goBack } = useNavigation();
@@ -17,15 +19,19 @@ export const EpisodeHeader: FC<NativeStackHeaderProps> = () => {
 
   const handleClear = () => goBack();
 
+  const { top } = useSafeAreaInsets();
+
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      colors={['white', 'black']}
+      style={StyleSheet.flatten([styles.container, { paddingTop: top + 16 }])}>
       {isLoading ? (
         <Text style={styles.title}>Loading</Text>
       ) : (
         <Text style={styles.title}>{episode?.name}</Text>
       )}
       <Icon name="clear" size={30} color="white" onPress={handleClear} />
-    </View>
+    </LinearGradient>
   );
 };
 

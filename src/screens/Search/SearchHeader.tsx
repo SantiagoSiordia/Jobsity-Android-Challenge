@@ -7,13 +7,15 @@ import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { setQuery } from '../../services/redux/search';
 import { useAppSelector } from '../../services/redux';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import LinearGradient from 'react-native-linear-gradient';
 
 export const SearchHeader: FC<NativeStackHeaderProps> = () => {
   const [showToSearch, setShowToSearch] = useState<string>('');
   const { goBack } = useNavigation();
   const dispatch = useDispatch();
   const searchQuery = useAppSelector(state => state.search.query);
-
+  const { top } = useSafeAreaInsets();
   const handleClear = () => {
     setShowToSearch('');
     goBack();
@@ -25,7 +27,12 @@ export const SearchHeader: FC<NativeStackHeaderProps> = () => {
 
   return (
     <View>
-      <View style={styles.container}>
+      <LinearGradient
+        colors={['white', 'black']}
+        style={StyleSheet.flatten([
+          styles.container,
+          { paddingTop: top + 16 },
+        ])}>
         <View style={styles.inputContainer}>
           <Icon name="input" color="white" />
           <TextInput
@@ -43,7 +50,7 @@ export const SearchHeader: FC<NativeStackHeaderProps> = () => {
         ) : null}
 
         <Icon name="clear" size={30} color="white" onPress={handleClear} />
-      </View>
+      </LinearGradient>
       <Text style={styles.searchingFor}>
         Results for <Text style={styles.searchQuery}>"{searchQuery}"</Text>
       </Text>

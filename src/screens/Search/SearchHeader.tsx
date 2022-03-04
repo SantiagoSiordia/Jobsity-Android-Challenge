@@ -33,22 +33,22 @@ export const SearchHeader: FC<NativeStackHeaderProps> = () => {
           { paddingTop: top + 16 },
         ])}>
         <View style={styles.inputContainer}>
-          <Icon name="input" color="white" />
+          <Icon color="white" name="input" />
           <TextInput
-            value={showToSearch}
             autoFocus
             onChangeText={setShowToSearch}
-            style={styles.textInput}
             placeholder="Search shows by name"
             placeholderTextColor="white"
             selectionColor="black"
+            style={styles.textInput}
+            value={showToSearch}
           />
         </View>
         {showToSearch !== '' ? (
-          <Button title="Search" onPress={handleSearch} />
+          <Button onPress={handleSearch} title="Search" />
         ) : null}
 
-        <Icon name="clear" size={30} color="white" onPress={handleClear} />
+        <Icon color="white" name="clear" onPress={handleClear} size={30} />
       </LinearGradient>
       <Text style={styles.searchingFor}>
         Results for <Text style={styles.searchQuery}>"{searchQuery}"</Text>

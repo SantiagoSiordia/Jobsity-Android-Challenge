@@ -36,7 +36,7 @@ export const SearchHeader: FC<NativeStackHeaderProps> = () => {
       setQuery({
         query: {
           queryString: stringToSearch,
-          searchType: 'show',
+          searchType: 'person',
         },
       }),
     );

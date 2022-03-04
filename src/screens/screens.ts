@@ -6,4 +6,5 @@ export const SCREENS = {
   EPISODE_DETAILS: 'Episode details',
   PIN: 'PIN',
   FAVORITES: 'Favorites',
+  PERSON_DETAILS: 'Person details',
 };

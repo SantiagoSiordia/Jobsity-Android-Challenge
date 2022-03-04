@@ -7,6 +7,7 @@ export const ENDPOINTS = {
   SHOW_EPISODES: (showId: string) =>
     `${ENDPOINTS.SHOW_DETAILS + showId}/episodes`,
   EPISODES: (episodeId: string) => `/episodes/${episodeId}`,
+  SEARCH_PEOPLE: '/search/people',
 };
 
 export const api = axios.create({

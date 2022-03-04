@@ -1,4 +1,4 @@
-import { Loading, Show } from '@components';
+import { Loading, Person, Show } from '@components';
 import { useAppSelector, useSearchResults } from '@services';
 import React, { FC } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -6,7 +6,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 export const Search: FC = () => {
   const searchQuery = useAppSelector(state => state.search.query);
   const {
-    data: queriedShows,
+    data: queriedResults,
     isLoading,
     isError,
   } = useSearchResults(searchQuery);
@@ -23,7 +23,7 @@ export const Search: FC = () => {
     );
   }
 
-  if (queriedShows === undefined || queriedShows === null) {
+  if (queriedResults === undefined || queriedResults === null) {
     return (
       <View style={styles.container}>
         <Text style={styles.instructions}>
@@ -36,9 +36,12 @@ export const Search: FC = () => {
   return (
     <ScrollView>
       <View style={styles.showsContainer}>
-        {queriedShows.map(({ show }, showIndex) => (
-          <Show key={'show-' + showIndex} show={show} />
-        ))}
+        {queriedResults.map(({ show, person }, resultIndex) => {
+          if (show !== undefined) {
+            return <Show key={'show-' + resultIndex} show={show} />;
+          }
+          return <Person key={'person-' + resultIndex} person={person} />;
+        })}
       </View>
     </ScrollView>
   );

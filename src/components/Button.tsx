@@ -1,30 +1,58 @@
 import React, { FC } from 'react';
 import { Pressable, PressableProps, StyleSheet, Text } from 'react-native';
-
 export type ButtonProps = PressableProps & {
   title: string;
-  icon?: React.Component;
+  variant: 'black' | 'white';
+  icon?: React.ReactNode;
 };
 
-export const Button: FC<ButtonProps> = ({ title, icon, ...pressableProps }) => {
+export const Button: FC<ButtonProps> = ({
+  title,
+  icon,
+  variant,
+  ...pressableProps
+}) => {
   return (
-    <Pressable style={styles.pressable} {...pressableProps}>
-      <Text style={styles.pressableText}>{title}</Text>
-      {icon}
+    <Pressable style={styles[variant].button} {...pressableProps}>
+      <Text style={styles[variant].text}>{title}</Text>
+      {icon && icon}
     </Pressable>
   );
 };
 
-const styles = StyleSheet.create({
-  pressable: {
-    backgroundColor: '#f194ff',
-    height: 30,
-    padding: 8,
-    borderRadius: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  pressableText: {
-    color: 'white',
-  },
-});
+const styles = {
+  black: StyleSheet.create({
+    text: {
+      textAlign: 'center',
+      marginRight: 24,
+      fontSize: 16,
+      color: 'white',
+    },
+    button: {
+      borderWidth: 2,
+      borderRadius: 8,
+      paddingVertical: 8,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+  }),
+  white: StyleSheet.create({
+    text: {
+      textAlign: 'center',
+      marginRight: 24,
+      fontSize: 16,
+      color: 'black',
+    },
+    button: {
+      borderWidth: 2,
+      borderRadius: 8,
+      paddingVertical: 8,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'white',
+      marginBottom: 8,
+    },
+  }),
+};

@@ -27,7 +27,7 @@ export const Search: FC = () => {
     return (
       <View style={styles.container}>
         <Text style={styles.instructions}>
-          Search a show by name on the header input!
+          Search a show or person by name on the header input!
         </Text>
       </View>
     );

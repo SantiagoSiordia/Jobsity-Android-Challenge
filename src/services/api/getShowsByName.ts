@@ -1,7 +1,8 @@
+import { SearchState } from '@services';
 import { api, ENDPOINTS, ShowType } from '.';
 
-export const getShowsByName = async (q: string) => {
-  if (q === '') {
+export const getShowsByName = async (query: SearchState['query']) => {
+  if (query.queryString === '') {
     return null;
   }
   try {
@@ -12,7 +13,7 @@ export const getShowsByName = async (q: string) => {
       }>
     >(ENDPOINTS.SEARCH_SHOWS, {
       params: {
-        q,
+        q: query.queryString,
       },
     });
     return data;

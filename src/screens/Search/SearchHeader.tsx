@@ -10,18 +10,25 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useDispatch } from 'react-redux';
 
 export const SearchHeader: FC<NativeStackHeaderProps> = () => {
-  const [showToSearch, setShowToSearch] = useState<string>('');
+  const [stringToSearch, setStringToSearch] = useState<string>('');
   const { goBack } = useNavigation();
   const dispatch = useDispatch();
   const searchQuery = useAppSelector(state => state.search.query);
   const { top } = useSafeAreaInsets();
   const handleClear = () => {
-    setShowToSearch('');
+    setStringToSearch('');
     goBack();
   };
 
   const handleSearch = () => {
-    dispatch(setQuery(showToSearch));
+    dispatch(
+      setQuery({
+        query: {
+          queryString: stringToSearch,
+          searchType: 'show',
+        },
+      }),
+    );
   };
 
   return (
@@ -33,26 +40,40 @@ export const SearchHeader: FC<NativeStackHeaderProps> = () => {
           { paddingTop: top + 16 },
         ])}>
         <View style={styles.inputContainer}>
-          <Icon color="white" name="input" />
+          <Icon color="white" name="input" size={16} />
           <TextInput
             autoFocus
-            onChangeText={setShowToSearch}
-            placeholder="Search shows by name"
+            onChangeText={setStringToSearch}
+            placeholder="Search shows or people by name"
             placeholderTextColor="white"
             selectionColor="black"
             style={styles.textInput}
-            value={showToSearch}
+            value={stringToSearch}
           />
         </View>
-        {showToSearch !== '' ? (
-          <Button onPress={handleSearch} title="Search" />
-        ) : null}
 
         <Icon color="white" name="clear" onPress={handleClear} size={30} />
       </LinearGradient>
-      <Text style={styles.searchingFor}>
-        Results for <Text style={styles.searchQuery}>"{searchQuery}"</Text>
-      </Text>
+      <View style={styles.resultsContainer}>
+        <Button
+          // eslint-disable-next-line react/jsx-curly-brace-presence
+          icon={<Icon color="black" name="tv" size={20} />}
+          onPress={handleSearch}
+          title="Search shows"
+          variant="white"
+        />
+        <Button
+          // eslint-disable-next-line react/jsx-curly-brace-presence
+          icon={<Icon color="black" name="person-search" size={20} />}
+          onPress={handleSearch}
+          title="Search people"
+          variant="white"
+        />
+        <Text style={styles.searchingFor}>
+          Results for{' '}
+          <Text style={styles.searchQuery}>"{searchQuery.queryString}"</Text>
+        </Text>
+      </View>
     </View>
   );
 };
@@ -73,23 +94,28 @@ const styles = StyleSheet.create({
   textInput: {
     color: 'white',
     marginHorizontal: 16,
-    width: 130,
+    width: '100%',
   },
   inputContainer: {
     backgroundColor: 'grey',
     borderRadius: 8,
     padding: 8,
-    height: 30,
+    height: 40,
+    alignItems: 'center',
     flexDirection: 'row',
+    width: '90%',
   },
   searchingFor: {
     color: 'white',
     fontSize: 16,
     textAlign: 'center',
     paddingBottom: 8,
-    backgroundColor: 'black',
   },
   searchQuery: {
     fontWeight: 'bold',
+  },
+  resultsContainer: {
+    backgroundColor: 'black',
+    paddingHorizontal: 16,
   },
 });

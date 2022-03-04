@@ -1,9 +1,9 @@
-import { getShowsByName } from '@services';
+import { getShowsByName, SearchState } from '@services';
 import { useQuery } from 'react-query';
 import { QUERIES } from './queries';
 
-export const useShowSearchResult = (q: string) => {
-  return useQuery([QUERIES.SHOWS, q], {
-    queryFn: () => getShowsByName(q),
+export const useShowSearchResult = (query: SearchState['query']) => {
+  return useQuery([QUERIES.SHOWS, query.queryString, query.searchType], {
+    queryFn: () => getShowsByName(query),
   });
 };

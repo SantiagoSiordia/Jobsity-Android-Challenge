@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 import { setQuery, useAppSelector } from '@services';
 import React, { FC, useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { Platform, StyleSheet, Text, TextInput, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -130,15 +130,16 @@ const styles = StyleSheet.create({
     color: 'white',
     marginHorizontal: 16,
     width: '100%',
+    zIndex: 10,
   },
   inputContainer: {
     backgroundColor: 'grey',
     borderRadius: 8,
-    padding: 8,
-    height: 40,
+    paddingHorizontal: 8,
     alignItems: 'center',
     flexDirection: 'row',
     width: '90%',
+    paddingVertical: Platform.OS === 'android' ? 0 : 8,
   },
   searchingFor: {
     color: 'white',

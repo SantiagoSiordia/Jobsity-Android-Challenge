@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
   },
   instructions: {
     textAlign: 'center',
+    color: 'black',
   },
   showsContainer: {
     flex: 1,

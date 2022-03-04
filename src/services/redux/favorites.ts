@@ -18,7 +18,6 @@ export const favoritesSlice = createSlice({
   reducers: {
     addFavorite: (state, action: PayloadAction<FavoriteType>) => {
       const newFavorites = [...state.favorites, action.payload];
-      console.log(newFavorites);
       const newFavoritesSorted = newFavorites.sort((a, b) =>
         a.showName.localeCompare(b.showName),
       );

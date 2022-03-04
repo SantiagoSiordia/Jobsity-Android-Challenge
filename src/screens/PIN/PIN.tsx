@@ -8,6 +8,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import TouchID from 'react-native-touch-id';
 import Icon from 'react-native-vector-icons/Entypo';
 import MCIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MIcon from 'react-native-vector-icons/MaterialIcons';
 import { NumberButton } from './NumberButton';
 
 const optionalConfigObject = {
@@ -73,9 +74,22 @@ export const PIN: FC = () => {
       });
   };
 
+  const handleOnClear = () => {
+    navigation.goBack();
+  };
+
   return (
     <View
       style={StyleSheet.flatten([styles.container, { paddingTop: top + 16 }])}>
+      {storedPIN === null && (
+        <MIcon
+          color="black"
+          name="clear"
+          onPress={handleOnClear}
+          size={48}
+          style={StyleSheet.flatten([styles.clearIcon, { top: top + 16 }])}
+        />
+      )}
       <Text style={styles.PINText}>
         {storedPIN === null ? 'Create PIN' : 'PIN'}
       </Text>
@@ -180,5 +194,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 32,
+  },
+  clearIcon: {
+    position: 'absolute',
+    right: 16,
+    padding: 4,
+    zIndex: 1,
   },
 });

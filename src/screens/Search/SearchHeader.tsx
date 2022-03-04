@@ -42,6 +42,14 @@ export const SearchHeader: FC<NativeStackHeaderProps> = () => {
     );
   };
 
+  const areButtonsVisible = stringToSearch.length > 0;
+  const isPersonSearchButtonVisible =
+    stringToSearch !== searchQuery.queryString ||
+    searchQuery.searchType !== 'person';
+  const isShowSearchButtonVisible =
+    stringToSearch !== searchQuery.queryString ||
+    searchQuery.searchType !== 'show';
+
   return (
     <View>
       <LinearGradient
@@ -66,28 +74,40 @@ export const SearchHeader: FC<NativeStackHeaderProps> = () => {
         <Icon color="white" name="clear" onPress={handleClear} size={30} />
       </LinearGradient>
       <View style={styles.resultsContainer}>
-        {stringToSearch.length > 0 && (
+        {areButtonsVisible && (
           <>
-            <Button
-              // eslint-disable-next-line react/jsx-curly-brace-presence
-              icon={<Icon color="black" name="tv" size={20} />}
-              onPress={handleSearchShows}
-              title="Search shows"
-              variant="white"
-            />
-            <Button
-              // eslint-disable-next-line react/jsx-curly-brace-presence
-              icon={<Icon color="black" name="person-search" size={20} />}
-              onPress={handleSearchPeople}
-              title="Search people"
-              variant="white"
-            />
+            {isShowSearchButtonVisible && (
+              <Button
+                // eslint-disable-next-line react/jsx-curly-brace-presence
+                icon={<Icon color="black" name="tv" size={20} />}
+                onPress={handleSearchShows}
+                title="Search shows"
+                variant="white"
+              />
+            )}
+            {isPersonSearchButtonVisible && (
+              <Button
+                // eslint-disable-next-line react/jsx-curly-brace-presence
+                icon={<Icon color="black" name="person-search" size={20} />}
+                onPress={handleSearchPeople}
+                title="Search people"
+                variant="white"
+              />
+            )}
           </>
         )}
-        <Text style={styles.searchingFor}>
-          Results for{' '}
-          <Text style={styles.searchQuery}>"{searchQuery.queryString}"</Text>
-        </Text>
+        {searchQuery.queryString !== '' && (
+          <Text style={styles.searchingFor}>
+            <Text style={styles.searchQuery}>
+              "
+              {searchQuery.searchType.charAt(0).toUpperCase() +
+                searchQuery.searchType.slice(1)}
+              's"{' '}
+            </Text>
+            results for{' '}
+            <Text style={styles.searchQuery}>"{searchQuery.queryString}"</Text>
+          </Text>
+        )}
       </View>
     </View>
   );

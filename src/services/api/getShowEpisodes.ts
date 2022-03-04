@@ -1,20 +1,20 @@
 import { api, ENDPOINTS, Image, Links, Rating } from '.';
 
 export interface Episode {
-  id: number;
-  url: string;
-  name: string;
-  season: number;
-  number: number;
-  type: string;
   airdate: Date;
-  airtime: string;
   airstamp: Date;
-  runtime: number;
-  rating: Rating;
+  airtime: string;
+  id: number;
   image: Image | null;
-  summary: string;
   links: Links;
+  name: string;
+  number: number;
+  rating: Rating;
+  runtime: number;
+  season: number;
+  summary: string;
+  type: string;
+  url: string;
 }
 
 export interface Self {

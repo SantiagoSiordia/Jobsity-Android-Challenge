@@ -1,8 +1,13 @@
 export type DetailRoute = 'Details';
+export type PersonDetailRoute = 'PersonDetails';
 export type ImageRoute = 'Image';
 export type EpisodeRoute = 'Episode';
 
-export type Routes = DetailRoute | ImageRoute | EpisodeRoute;
+export type Routes =
+  | DetailRoute
+  | ImageRoute
+  | EpisodeRoute
+  | PersonDetailRoute;
 
 export const ROUTES: Record<string, Routes> = {
   DETAILS: 'Details',
@@ -19,5 +24,8 @@ export type ParamList = {
   };
   Image: {
     image: string;
+  };
+  PersonDetails: {
+    personId: string;
   };
 };

@@ -12,13 +12,23 @@ export interface ShowResponse {
 }
 
 export interface PersonType {
+  _embedded: {
+    castcredits: Array<{
+      _links: {
+        character: Self;
+        show: Self;
+      };
+      self: string | false;
+      voice: boolean;
+    }>;
+  };
+  _links: Links;
   birthday: string | null;
   country: string | null;
   deathday: string | null;
   gender: string | null;
   id: number;
   image: Image | null;
-  links: Links;
   name: string;
   updated: number;
   url: string;

@@ -1,6 +1,7 @@
 export * from './Episode';
 export * from './Favorites';
 export * from './Image';
+export * from './PersonDetails';
 export * from './PIN';
 export * from './screens';
 export * from './Search';

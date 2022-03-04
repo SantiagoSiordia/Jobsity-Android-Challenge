@@ -6,6 +6,8 @@ import {
   Favorites,
   FavoritesHeader,
   Image,
+  PersonDetails,
+  PersonDetailsHeader,
   PIN,
   SCREENS,
   Search,
@@ -81,6 +83,13 @@ export const Navigator: FC = () => {
           name={SCREENS.FAVORITES}
           options={{
             header: headerProps => <FavoritesHeader {...headerProps} />,
+          }}
+        />
+        <Stack.Screen
+          component={PersonDetails}
+          name={SCREENS.PERSON_DETAILS}
+          options={{
+            header: headerProps => <PersonDetailsHeader {...headerProps} />,
           }}
         />
       </Stack.Navigator>

@@ -1,5 +1,5 @@
 import { Loading, Show } from '@components';
-import { useAppSelector, useShowSearchResult } from '@services';
+import { useAppSelector, useSearchResults } from '@services';
 import React, { FC } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
@@ -9,7 +9,7 @@ export const Search: FC = () => {
     data: queriedShows,
     isLoading,
     isError,
-  } = useShowSearchResult(searchQuery);
+  } = useSearchResults(searchQuery);
 
   if (isLoading) {
     return <Loading />;

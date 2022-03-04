@@ -20,7 +20,18 @@ export const SearchHeader: FC<NativeStackHeaderProps> = () => {
     goBack();
   };
 
-  const handleSearch = () => {
+  const handleSearchShows = () => {
+    dispatch(
+      setQuery({
+        query: {
+          queryString: stringToSearch,
+          searchType: 'show',
+        },
+      }),
+    );
+  };
+
+  const handleSearchPeople = () => {
     dispatch(
       setQuery({
         query: {
@@ -55,20 +66,24 @@ export const SearchHeader: FC<NativeStackHeaderProps> = () => {
         <Icon color="white" name="clear" onPress={handleClear} size={30} />
       </LinearGradient>
       <View style={styles.resultsContainer}>
-        <Button
-          // eslint-disable-next-line react/jsx-curly-brace-presence
-          icon={<Icon color="black" name="tv" size={20} />}
-          onPress={handleSearch}
-          title="Search shows"
-          variant="white"
-        />
-        <Button
-          // eslint-disable-next-line react/jsx-curly-brace-presence
-          icon={<Icon color="black" name="person-search" size={20} />}
-          onPress={handleSearch}
-          title="Search people"
-          variant="white"
-        />
+        {stringToSearch.length > 0 && (
+          <>
+            <Button
+              // eslint-disable-next-line react/jsx-curly-brace-presence
+              icon={<Icon color="black" name="tv" size={20} />}
+              onPress={handleSearchShows}
+              title="Search shows"
+              variant="white"
+            />
+            <Button
+              // eslint-disable-next-line react/jsx-curly-brace-presence
+              icon={<Icon color="black" name="person-search" size={20} />}
+              onPress={handleSearchPeople}
+              title="Search people"
+              variant="white"
+            />
+          </>
+        )}
         <Text style={styles.searchingFor}>
           Results for{' '}
           <Text style={styles.searchQuery}>"{searchQuery.queryString}"</Text>

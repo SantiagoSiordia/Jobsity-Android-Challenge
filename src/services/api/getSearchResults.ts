@@ -1,7 +1,7 @@
 import { SearchState } from '@services';
 import { api, ENDPOINTS, ShowType } from '.';
 
-export const getShowsByName = async (query: SearchState['query']) => {
+export const getSearchResults = async (query: SearchState['query']) => {
   if (query.queryString === '') {
     return null;
   }

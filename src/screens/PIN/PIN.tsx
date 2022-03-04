@@ -57,19 +57,13 @@ export const PIN: FC = () => {
   const handleOnActivateBiometrics = () => {
     TouchID.isSupported()
       .then(biometryType => {
-        // Success code
-        if (biometryType === 'FaceID') {
-          console.log('FaceID is supported.');
-        } else {
-          console.log('TouchID is supported.');
-          TouchID.authenticate('Authenticate', optionalConfigObject)
-            .then(() => {
-              navigation.replace(SCREENS.SERIES_LIST);
-            })
-            .catch(error => {
-              console.log('Authentication Failed', error.toString());
-            });
-        }
+        TouchID.authenticate('Authenticate', optionalConfigObject)
+          .then(() => {
+            navigation.replace(SCREENS.SERIES_LIST);
+          })
+          .catch(error => {
+            console.log('Authentication Failed', error.toString());
+          });
       })
       .catch(error => {
         console.log(error);

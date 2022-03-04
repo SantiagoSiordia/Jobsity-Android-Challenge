@@ -66,7 +66,7 @@ export const PersonDetails: FC = () => {
         </LinearGradient>
       </ImageBackground>
       <View style={styles.container}>
-        <Text style={styles.title}>{person.name}</Text>
+        <Text style={styles.name}>{person.name}</Text>
         <View style={styles.showsContainer}>
           {showIds.map(showId => {
             return <ShowIdWrapper key={'show-' + showId} showId={showId} />;
@@ -90,12 +90,13 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 200,
   },
-  title: {
+  name: {
     fontSize: 32,
     fontWeight: 'bold',
     alignSelf: 'center',
     textAlign: 'center',
     marginBottom: 32,
+    color: 'black',
   },
   airText: {
     fontSize: 14,

@@ -152,6 +152,7 @@ export const ShowDetails: FC = () => {
         </Text>
         <Text style={styles.infoTextTitle}>Summary:</Text>
         <RenderHtml
+          baseStyle={styles.html}
           contentWidth={100}
           source={{
             html: show.summary,
@@ -206,21 +207,25 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     alignSelf: 'center',
     textAlign: 'center',
+    color: 'black',
   },
   airText: {
     fontSize: 14,
     alignSelf: 'center',
     lineHeight: 24,
+    color: 'black',
   },
   infoTextTitle: {
     fontSize: 14,
     lineHeight: 24,
     fontWeight: 'bold',
+    color: 'black',
   },
   infoText: {
     fontSize: 14,
     lineHeight: 20,
     marginBottom: 16,
+    color: 'black',
   },
   invisiblePressable: {
     flex: 1,
@@ -252,11 +257,13 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginVertical: 24,
     fontWeight: 'bold',
+    color: 'black',
   },
   favoritesText: {
     textAlign: 'center',
     marginRight: 24,
     fontSize: 16,
+    color: 'black',
   },
   favoritesButton: {
     borderWidth: 2,
@@ -272,4 +279,5 @@ const styles = StyleSheet.create({
   isFavoriteText: {
     color: 'white',
   },
+  html: { color: 'black' },
 });

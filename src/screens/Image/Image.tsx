@@ -14,10 +14,16 @@ export const Image: FC = () => {
   const { top } = useSafeAreaInsets();
   return (
     <ImageBackground
-      style={StyleSheet.flatten([styles.image, { paddingTop: 16 + top }])}
+      resizeMode="contain"
       source={{ uri: image }}
-      resizeMode="contain">
-      <Icon name="clear" size={32} onPress={goBack} style={styles.icon} />
+      style={StyleSheet.flatten([styles.image, { paddingTop: 16 + top }])}>
+      <Icon
+        color="black"
+        name="clear"
+        onPress={goBack}
+        size={32}
+        style={styles.icon}
+      />
     </ImageBackground>
   );
 };

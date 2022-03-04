@@ -68,6 +68,7 @@ export const Episode: FC = () => {
         <Text style={styles.infoTitle}>Summary:</Text>
         {episode.summary !== null && episode.summary !== undefined && (
           <RenderHtml
+            baseStyle={styles.html}
             contentWidth={100}
             source={{
               html: episode.summary,
@@ -92,10 +93,12 @@ const styles = StyleSheet.create({
   infoTitle: {
     fontSize: 16,
     fontWeight: 'bold',
+    color: 'black',
   },
   infoText: {
     fontSize: 16,
     marginBottom: 16,
+    color: 'black',
   },
   invisiblePressable: {
     flex: 1,
@@ -103,4 +106,5 @@ const styles = StyleSheet.create({
   linearGradient: {
     flex: 1,
   },
+  html: { color: 'black' },
 });

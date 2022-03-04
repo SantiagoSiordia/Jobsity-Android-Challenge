@@ -162,6 +162,7 @@ const styles = StyleSheet.create({
     fontSize: 48,
     fontWeight: 'bold',
     textAlign: 'center',
+    color: 'black',
   },
   emptyDot: {
     borderWidth: 3,

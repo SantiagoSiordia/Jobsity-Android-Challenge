@@ -119,6 +119,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 16,
     marginRight: 8,
+    color: 'black',
   },
   PINcontainer: {
     flexDirection: 'row',

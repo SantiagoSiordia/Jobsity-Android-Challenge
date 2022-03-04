@@ -55,14 +55,17 @@ export const PIN: FC = () => {
   const handleOnErase = () => setPin(prev => prev.slice(0, prev.length - 1));
 
   const handleOnActivateBiometrics = () => {
+    if (storedPIN === null) {
+      return;
+    }
     TouchID.isSupported()
-      .then(biometryType => {
+      .then(() => {
         TouchID.authenticate('Authenticate', optionalConfigObject)
           .then(() => {
             navigation.replace(SCREENS.SERIES_LIST);
           })
           .catch(error => {
-            console.log('Authentication Failed', error.toString());
+            console.log('Authentication Failed', error);
           });
       })
       .catch(error => {
@@ -97,7 +100,7 @@ export const PIN: FC = () => {
           <View style={styles.zeroEraseContainer}>
             <View style={styles.iconContainer}>
               <MCIcon
-                color="white"
+                color={storedPIN === null ? 'black' : 'white'}
                 name="face-recognition"
                 onPress={handleOnActivateBiometrics}
                 size={48}

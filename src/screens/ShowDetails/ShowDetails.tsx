@@ -85,14 +85,19 @@ export const ShowDetails: FC = () => {
     });
   };
 
-  const isFavorite = favorites.includes(show.id + '');
+  const isFavorite = favorites.some(fav => fav.showId === show.id + '');
 
   const handleAddToFavorites = () => {
     if (isFavorite) {
       dispatch(removeFavorite(show.id + ''));
     } else {
       if (show !== undefined && show !== null) {
-        dispatch(addFavorite(show.id + ''));
+        dispatch(
+          addFavorite({
+            showId: show.id + '',
+            showName: show.name,
+          }),
+        );
       }
     }
   };

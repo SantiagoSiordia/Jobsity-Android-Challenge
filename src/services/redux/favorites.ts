@@ -1,7 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+export interface FavoriteType {
+  showId: string;
+  showName: string;
+}
 export interface FavoritesState {
-  favorites: Array<string>;
+  favorites: Array<FavoriteType>;
 }
 
 const initialState: FavoritesState = {
@@ -12,12 +16,18 @@ export const favoritesSlice = createSlice({
   name: 'favorites',
   initialState,
   reducers: {
-    addFavorite: (state, action: PayloadAction<string>) => {
-      state.favorites = [...state.favorites, action.payload];
+    addFavorite: (state, action: PayloadAction<FavoriteType>) => {
+      const newFavorites = [...state.favorites, action.payload];
+      console.log(newFavorites);
+      const newFavoritesSorted = newFavorites.sort((a, b) =>
+        a.showName.localeCompare(b.showName),
+      );
+
+      state.favorites = [...newFavoritesSorted];
     },
     removeFavorite: (state, action: PayloadAction<string>) => {
       state.favorites = [
-        ...state.favorites.filter(showId => showId !== action.payload),
+        ...state.favorites.filter(fav => fav.showId !== action.payload),
       ];
     },
   },

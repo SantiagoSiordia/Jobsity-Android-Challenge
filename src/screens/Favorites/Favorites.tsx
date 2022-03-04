@@ -8,7 +8,7 @@ export const Favorites: FC = () => {
   return (
     <View style={styles.showsContainer}>
       {favorites.map(fav => (
-        <ShowIdWrapper showId={fav} />
+        <ShowIdWrapper key={'show-' + fav.showId} showId={fav.showId} />
       ))}
     </View>
   );

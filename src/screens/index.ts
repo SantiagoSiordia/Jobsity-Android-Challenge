@@ -1,4 +1,5 @@
 export * from './Episode';
+export * from './Favorites';
 export * from './Image';
 export * from './PIN';
 export * from './screens';

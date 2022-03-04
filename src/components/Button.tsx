@@ -3,12 +3,14 @@ import { Pressable, PressableProps, StyleSheet, Text } from 'react-native';
 
 export type ButtonProps = PressableProps & {
   title: string;
+  icon?: React.Component;
 };
 
-export const Button: FC<ButtonProps> = ({ title, ...pressableProps }) => {
+export const Button: FC<ButtonProps> = ({ title, icon, ...pressableProps }) => {
   return (
     <Pressable style={styles.pressable} {...pressableProps}>
       <Text style={styles.pressableText}>{title}</Text>
+      {icon}
     </Pressable>
   );
 };

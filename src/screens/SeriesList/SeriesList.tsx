@@ -59,6 +59,10 @@ export const SeriesList: FC = () => {
     queryClient.invalidateQueries(QUERIES.PIN);
   };
 
+  const handleSeeFavorites = () => {
+    push(SCREENS.FAVORITES);
+  };
+
   return (
     <ScrollView
       contentContainerStyle={styles.container}
@@ -79,6 +83,9 @@ export const SeriesList: FC = () => {
             <Text>Delete PIN</Text>
           </Pressable>
         )}
+        <Pressable onPress={handleSeeFavorites} style={styles.PIN}>
+          <Text>See favorites</Text>
+        </Pressable>
         <View style={styles.filler} />
       </View>
       {shows.pages.map((showsGroup, showsGroupIndex) => {
@@ -111,6 +118,7 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 8,
     marginBottom: 16,
+    marginRight: 8,
   },
   PINcontainer: {
     flexDirection: 'row',

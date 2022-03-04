@@ -5,4 +5,5 @@ export const SCREENS = {
   IMAGE: 'Image',
   EPISODE_DETAILS: 'Episode details',
   PIN: 'PIN',
+  FAVORITES: 'Favorites',
 };

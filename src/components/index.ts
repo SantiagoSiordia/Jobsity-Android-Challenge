@@ -1,3 +1,4 @@
 export * from './Button';
-export * from './Show';
 export * from './Loading';
+export * from './Show';
+export * from './ShowIdWrapper';

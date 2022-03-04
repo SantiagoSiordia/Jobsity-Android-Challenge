@@ -1,21 +1,32 @@
+import { Loading } from '@components';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { defaultNoImageURI } from '@resources';
+import { SCREENS } from '@screens';
+import {
+  addFavorite,
+  DetailRoute,
+  Episode,
+  ParamList,
+  removeFavorite,
+  useAppSelector,
+  useShow,
+  useShowEpisodes,
+} from '@services';
 import React, { FC } from 'react';
 import {
+  Image,
   ImageBackground,
   Pressable,
   ScrollView,
   StyleSheet,
   Text,
   View,
-  Image,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { defaultNoImageURI } from '@resources';
 import RenderHtml from 'react-native-render-html';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { SCREENS } from '@screens';
-import { Episode, useShowEpisodes, useShow, DetailRoute, ParamList } from '@services';
-import { Loading } from '@components';
+import Icon from 'react-native-vector-icons/AntDesign';
+import { useDispatch } from 'react-redux';
 
 export const ShowDetails: FC = () => {
   const {
@@ -28,6 +39,10 @@ export const ShowDetails: FC = () => {
     // isLoading: isLoadingEpisodes,
     // isError: isErrorEpisodes,
   } = useShowEpisodes(showId);
+
+  const dispatch = useDispatch();
+
+  const favorites = useAppSelector(state => state.favorites.favorites);
 
   const handleOnShowImage = () => {
     push(SCREENS.IMAGE, {
@@ -70,6 +85,18 @@ export const ShowDetails: FC = () => {
     });
   };
 
+  const isFavorite = favorites.includes(show.id + '');
+
+  const handleAddToFavorites = () => {
+    if (isFavorite) {
+      dispatch(removeFavorite(show.id + ''));
+    } else {
+      if (show !== undefined && show !== null) {
+        dispatch(addFavorite(show.id + ''));
+      }
+    }
+  };
+
   return (
     <ScrollView>
       <ImageBackground
@@ -90,6 +117,27 @@ export const ShowDetails: FC = () => {
           {show.schedule.days.length === 0 ? 'Someday' : show.schedule.days}s at{' '}
           {show.schedule.time === '' ? 'some hour' : show.schedule.time}
         </Text>
+
+        <Pressable
+          onPress={handleAddToFavorites}
+          style={StyleSheet.flatten([
+            styles.favoritesButton,
+            isFavorite && styles.isFavoriteButton,
+          ])}>
+          <Text
+            style={StyleSheet.flatten([
+              styles.favoritesText,
+              isFavorite && styles.isFavoriteText,
+            ])}>
+            {isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+          </Text>
+          <Icon
+            color={isFavorite ? 'white' : 'black'}
+            name={isFavorite ? 'heart' : 'hearto'}
+            size={16}
+          />
+        </Pressable>
+
         <Text style={styles.infoTextTitle}>Genres:</Text>
         <Text style={styles.infoText}>
           {show.genres.map(
@@ -113,8 +161,8 @@ export const ShowDetails: FC = () => {
                 {episodes.map(episode => {
                   return (
                     <Pressable
-                      onPress={() => handleOnSeeEpisode(episode.id)}
                       key={'episode-' + show.name + '-' + episode.id}
+                      onPress={() => handleOnSeeEpisode(episode.id)}
                       style={styles.episodeContainer}>
                       <Text style={styles.episodeName}>{episode.name}</Text>
                       <Image
@@ -199,5 +247,24 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginVertical: 24,
     fontWeight: 'bold',
+  },
+  favoritesText: {
+    textAlign: 'center',
+    marginRight: 24,
+    fontSize: 16,
+  },
+  favoritesButton: {
+    borderWidth: 2,
+    borderRadius: 8,
+    paddingVertical: 8,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  isFavoriteButton: {
+    backgroundColor: 'black',
+  },
+  isFavoriteText: {
+    color: 'white',
   },
 });

@@ -3,6 +3,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
   Episode,
+  Favorites,
+  FavoritesHeader,
   Image,
   PIN,
   SCREENS,
@@ -72,6 +74,13 @@ export const Navigator: FC = () => {
           name={SCREENS.EPISODE_DETAILS}
           options={{
             header: headerProps => <ShowDetailsHeader {...headerProps} />,
+          }}
+        />
+        <Stack.Screen
+          component={Favorites}
+          name={SCREENS.FAVORITES}
+          options={{
+            header: headerProps => <FavoritesHeader {...headerProps} />,
           }}
         />
       </Stack.Navigator>

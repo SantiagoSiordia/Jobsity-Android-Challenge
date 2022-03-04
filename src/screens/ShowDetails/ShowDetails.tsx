@@ -15,6 +15,7 @@ import {
 } from '@services';
 import React, { FC } from 'react';
 import {
+  Dimensions,
   Image,
   ImageBackground,
   Pressable,
@@ -27,6 +28,10 @@ import LinearGradient from 'react-native-linear-gradient';
 import RenderHtml from 'react-native-render-html';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useDispatch } from 'react-redux';
+
+const screenWidth = Dimensions.get('screen').width;
+
+const width = screenWidth / 2 - 24;
 
 export const ShowDetails: FC = () => {
   const {
@@ -231,7 +236,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   episodeImage: {
-    width: 170,
+    width,
     aspectRatio: 1.6,
     borderRadius: 8,
   },
@@ -246,7 +251,7 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   episodeName: {
-    width: 110,
+    width,
     fontSize: 14,
     fontWeight: 'bold',
     color: 'black',

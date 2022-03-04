@@ -4,7 +4,11 @@ import { defaultNoImageURI } from '@resources';
 import { SCREENS } from '@screens';
 import { ShowType } from '@services';
 import React, { FC } from 'react';
-import { Image, Pressable, StyleSheet, Text } from 'react-native';
+import { Dimensions, Image, Pressable, StyleSheet, Text } from 'react-native';
+
+const screenWidth = Dimensions.get('screen').width;
+
+const width = screenWidth / 3 - 8 * 2;
 
 export interface ShowProps {
   show: ShowType;
@@ -34,7 +38,7 @@ export const Show: FC<ShowProps> = ({ show }) => {
 
 const styles = StyleSheet.create({
   image: {
-    width: 110,
+    width,
     aspectRatio: 0.7,
     borderRadius: 8,
   },
@@ -43,7 +47,7 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   showName: {
-    width: 110,
+    width,
     fontSize: 14,
     fontWeight: 'bold',
     color: 'black',

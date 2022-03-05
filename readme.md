@@ -72,7 +72,7 @@ There is a [video on YouTube](https://youtu.be/Ia8WoA9fEhY) I made to demo this 
 
 **Everything** checked on every section is done.
 
-## Instructions to set up the project locally
+# Instructions to set up the project locally
 
 ```bash
 git clone git@github.com:SantiagoSiordia/Jobsity-Android-Challenge.git

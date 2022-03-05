@@ -24,7 +24,6 @@ const styles = {
   black: StyleSheet.create({
     text: {
       textAlign: 'center',
-      marginRight: 24,
       fontSize: 16,
       color: 'white',
     },
@@ -35,12 +34,12 @@ const styles = {
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
+      paddingHorizontal: 16,
     },
   }),
   white: StyleSheet.create({
     text: {
       textAlign: 'center',
-      marginRight: 24,
       fontSize: 16,
       color: 'black',
     },
@@ -53,6 +52,7 @@ const styles = {
       alignItems: 'center',
       backgroundColor: 'white',
       marginBottom: 8,
+      paddingHorizontal: 16,
     },
   }),
 };

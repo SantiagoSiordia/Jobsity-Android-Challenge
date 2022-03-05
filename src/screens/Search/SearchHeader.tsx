@@ -79,7 +79,14 @@ export const SearchHeader: FC<NativeStackHeaderProps> = () => {
             {isShowSearchButtonVisible && (
               <Button
                 // eslint-disable-next-line react/jsx-curly-brace-presence
-                icon={<Icon color="black" name="tv" size={20} />}
+                icon={
+                  <Icon
+                    color="black"
+                    name="tv"
+                    size={20}
+                    style={{ marginLeft: 24 }}
+                  />
+                }
                 onPress={handleSearchShows}
                 title="Search shows"
                 variant="white"
@@ -88,7 +95,14 @@ export const SearchHeader: FC<NativeStackHeaderProps> = () => {
             {isPersonSearchButtonVisible && (
               <Button
                 // eslint-disable-next-line react/jsx-curly-brace-presence
-                icon={<Icon color="black" name="person-search" size={20} />}
+                icon={
+                  <Icon
+                    color="black"
+                    name="person-search"
+                    size={20}
+                    style={{ marginLeft: 24 }}
+                  />
+                }
                 onPress={handleSearchPeople}
                 title="Search people"
                 variant="white"

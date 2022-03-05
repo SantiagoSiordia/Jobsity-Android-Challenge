@@ -1,11 +1,10 @@
-import { Loading, Show } from '@components';
+import { Button, Loading, Show } from '@components';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { deletePIN, QUERIES, useInfiniteShows, usePIN } from '@services';
 import React, { FC } from 'react';
 import {
   NativeScrollEvent,
-  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -74,18 +73,28 @@ export const SeriesList: FC = () => {
       scrollEventThrottle={400}>
       <View style={styles.PINcontainer}>
         {PIN === null && (
-          <Pressable onPress={handleOnCreatePIN} style={styles.PIN}>
-            <Text>Create PIN</Text>
-          </Pressable>
+          <View style={{ marginRight: 8 }}>
+            <Button
+              onPress={handleOnCreatePIN}
+              title="Create PIN"
+              variant="white"
+            />
+          </View>
         )}
         {typeof PIN === 'string' && (
-          <Pressable onPress={handleDeletePIN} style={styles.PIN}>
-            <Text>Delete PIN</Text>
-          </Pressable>
+          <View style={{ marginRight: 8 }}>
+            <Button
+              onPress={handleDeletePIN}
+              title="Delete PIN"
+              variant="white"
+            />
+          </View>
         )}
-        <Pressable onPress={handleSeeFavorites} style={styles.PIN}>
-          <Text>See favorites</Text>
-        </Pressable>
+        <Button
+          onPress={handleSeeFavorites}
+          title="See favorites"
+          variant="white"
+        />
         <View style={styles.filler} />
       </View>
       {shows.pages.map((showsGroup, showsGroupIndex) => {
@@ -119,12 +128,14 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 16,
     marginRight: 8,
-    color: 'black',
   },
   PINcontainer: {
     flexDirection: 'row',
   },
   filler: {
     flex: 1,
+  },
+  buttonText: {
+    color: 'black',
   },
 });

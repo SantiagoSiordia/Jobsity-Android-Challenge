@@ -76,7 +76,7 @@ There is a [video on YouTube](https://youtu.be/Ia8WoA9fEhY) I made to demo this 
 
 ```bash
 git clone git@github.com:SantiagoSiordia/Jobsity-Android-Challenge.git
-cd Jobsity
+cd Jobsity-Android-Challenge
 yarn
 cd ios
 pod install

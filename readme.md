@@ -71,3 +71,25 @@ If you didn't manage to finish everything, please tell us which parts you comple
 There is a [video on YouTube](https://youtu.be/Ia8WoA9fEhY) I made to demo this app a bit. Some minor changes have been performed on the app since.
 
 **Everything** checked on every section is done.
+
+## Instructions to set up the project locally
+
+```bash
+git clone git@github.com:SantiagoSiordia/Jobsity-Android-Challenge.git
+cd Jobsity
+yarn
+cd ios
+pod install
+cd ..
+yarn start
+```
+
+That will get the Metro Server up and running. Now whats left is to run the proper command to build the app on android or ios.
+
+```bash
+yarn android
+```
+
+```bash
+yarn ios
+```
